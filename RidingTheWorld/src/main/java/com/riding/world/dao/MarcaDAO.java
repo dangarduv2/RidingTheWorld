@@ -7,7 +7,4 @@ import com.riding.world.domain.Marca;
 
 
 
-public interface MarcaDAO extends CrudRepository<Marca,Integer>{
-
-	public List<Marca> findByccGreaterThan(int n);
-}
+public interface MarcaDAO extends CrudRepository<Marca,Integer>{}

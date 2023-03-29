@@ -8,7 +8,4 @@ import com.riding.world.domain.Lisencia;
 
 
 
-public interface LisenciaDAO extends CrudRepository<Lisencia,Integer>{
-
-	public List<Lisencia> findByccGreaterThan(int n);
-}
+public interface LisenciaDAO extends CrudRepository<Lisencia,Integer>{}

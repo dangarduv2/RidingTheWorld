@@ -33,11 +33,5 @@ public class LisenciaRepository implements ILisenciaRepository {
 		lisencia.setId(id);
 		return ld.save(lisencia);
 	}
-
-	@Override
-	public List<Lisencia> findByccGreaterThan(int id) {
-		return ld.findByccGreaterThan(id);
-	}
-
 	
 }

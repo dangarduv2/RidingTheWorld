@@ -4,9 +4,4 @@ import java.util.List;
 
 import com.riding.world.domain.Marca;
 
-public interface IMarcaRepository extends GenericInterface<Marca, Integer> {
-	
-	public List<Marca> findByccGreaterThan(int id);
-	
-	
-}
+public interface IMarcaRepository extends GenericInterface<Marca, Integer> {}

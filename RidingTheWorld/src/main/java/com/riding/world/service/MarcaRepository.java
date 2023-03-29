@@ -3,9 +3,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.riding.world.dao.LisenciaDAO;
 import com.riding.world.dao.MarcaDAO;
-import com.riding.world.domain.Lisencia;
 import com.riding.world.domain.Marca;
 
 @Service
@@ -34,11 +32,6 @@ public class MarcaRepository implements IMarcaRepository {
 		Marca marca = new Marca();
 		marca.setId(id);
 		return md.save(marca);
-	}
-
-	@Override
-	public List<Marca> findByccGreaterThan(int id) {
-		return md.findByccGreaterThan(id);
 	}
 
 	
