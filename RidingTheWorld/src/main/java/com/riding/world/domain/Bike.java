@@ -36,7 +36,6 @@ public class Bike implements Serializable {
 	private String nombreModelo;
 
 	public Bike() {
-		super();
 	}
 
 	public int getId() {

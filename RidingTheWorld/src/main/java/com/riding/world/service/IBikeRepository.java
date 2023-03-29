@@ -6,12 +6,8 @@ import com.riding.world.domain.Bike;
 
 
 
-public interface IBikeRepository {
+public interface IBikeRepository extends GenericInterface<Bike, Integer> {
 	
-	public Bike getBikeById(int id);
-	public List<Bike> getAllBikes();
-	public void deleteBike(int id);
-	public Bike updateBike(int id);
 	public List<Bike> findByccGreaterThan(int id);
 	
 	

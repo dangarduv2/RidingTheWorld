@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.riding.world.dao.BikeDAO;
 import com.riding.world.domain.Bike;
-import com.riding.world.service.IBikeRepository;
 
 @Service
 public class BikeRepository implements IBikeRepository {
@@ -15,22 +14,22 @@ public class BikeRepository implements IBikeRepository {
 	private BikeDAO bd;
 	
 	@Override
-	public Bike getBikeById(int id) {
+	public Bike getById(Integer id) {
 		return bd.findById(id).orElse(null);
 	}
 
 	@Override
-	public List<Bike> getAllBikes() {
+	public List<Bike> getAll() {
 		return (List<Bike>) bd.findAll();
 	}
 
 	@Override
-	public void deleteBike(int id) {
+	public void delete(Integer id) {
 		bd.deleteById(id);
 	}
 
 	@Override
-	public Bike updateBike(int id) {
+	public Bike update(Integer id) {
 		Bike bike = new Bike();
 		bike.setId(id);
 		return bd.save(bike);

@@ -13,6 +13,8 @@ public class Lisencia implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	public Lisencia() {
+	}
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int id;
