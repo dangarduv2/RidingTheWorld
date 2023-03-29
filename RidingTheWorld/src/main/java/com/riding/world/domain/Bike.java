@@ -15,10 +15,10 @@ public class Bike implements Serializable {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int id;
-	private String marca;
+	private Marca marca;
 	private int cc;
-	private String minLicense;
-	private String modelo;
+	private Lisencia lisencia;
+	private String nombreModelo;
 
 	public int getId() {
 		return id;
@@ -28,36 +28,37 @@ public class Bike implements Serializable {
 		this.id = id;
 	}
 
-	public String getMarca() {
+	public int getCc() {
+		return cc;
+	}
+
+
+	public Marca getMarca() {
 		return marca;
 	}
 
-	public void setMarca(String marca) {
+	public void setMarca(Marca marca) {
 		this.marca = marca;
 	}
 
-	public int getCc() {
-		return cc;
+	public Lisencia getLisencia() {
+		return lisencia;
+	}
+
+	public void setLisencia(Lisencia lisencia) {
+		this.lisencia = lisencia;
 	}
 
 	public void setCc(int cc) {
 		this.cc = cc;
 	}
 
-	public String getMinLicense() {
-		return minLicense;
+	public String getNombreModelo() {
+		return nombreModelo;
 	}
 
-	public void setMinLicense(String minLicense) {
-		this.minLicense = minLicense;
-	}
-
-	public String getModelo() {
-		return modelo;
-	}
-
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
+	public void setNombreModelo(String modelo) {
+		this.nombreModelo = modelo;
 	}
 
 }
