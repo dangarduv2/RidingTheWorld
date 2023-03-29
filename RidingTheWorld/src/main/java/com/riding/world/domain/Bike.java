@@ -80,6 +80,15 @@ public class Bike implements Serializable {
 		this.nombreModelo = modelo;
 	}
 
+	
+	
+	public Bike(Marca marca,int cc, Lisencia lisencia,String nombreModelo) {
+		this.marca = marca;
+		this.cc = cc;
+		this.lisencia = lisencia;
+		this.nombreModelo = nombreModelo;
+	}
+
 	@Override
 	public String toString() {
 		return "Bike [id=" + id + ", marca=" + marca + ", cc=" + cc + ", lisencia=" + lisencia + ", nombreModelo="
