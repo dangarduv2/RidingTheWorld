@@ -6,6 +6,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 public class Bike implements Serializable {
@@ -15,10 +20,24 @@ public class Bike implements Serializable {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int id;
+	
+	
 	private Marca marca;
+	
+	@NotNull
+	@Max(1500)
 	private int cc;
+	
+	
 	private Lisencia lisencia;
+	
+	@NotBlank
+	@Pattern(regexp="[A-Z]+", message="Tiene que estar en mayúsculas")
 	private String nombreModelo;
+
+	public Bike() {
+		super();
+	}
 
 	public int getId() {
 		return id;
@@ -60,5 +79,13 @@ public class Bike implements Serializable {
 	public void setNombreModelo(String modelo) {
 		this.nombreModelo = modelo;
 	}
+
+	@Override
+	public String toString() {
+		return "Bike [id=" + id + ", marca=" + marca + ", cc=" + cc + ", lisencia=" + lisencia + ", nombreModelo="
+				+ nombreModelo + "]";
+	}
+	
+		
 
 }

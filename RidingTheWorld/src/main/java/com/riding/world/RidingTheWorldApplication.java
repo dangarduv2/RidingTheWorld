@@ -10,4 +10,6 @@ public class RidingTheWorldApplication {
 		SpringApplication.run(RidingTheWorldApplication.class, args);
 	}
 
+	
+
 }
