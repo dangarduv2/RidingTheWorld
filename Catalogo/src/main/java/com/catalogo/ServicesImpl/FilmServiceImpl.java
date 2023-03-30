@@ -3,13 +3,14 @@ package com.catalogo.ServicesImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.catalogo.DAO.FilmDAO;
 import com.catalogo.IServices.IFilmService;
 import com.catalogo.domain.Actor;
 import com.catalogo.domain.Category;
 import com.catalogo.domain.Film;
-
+@Service
 public class FilmServiceImpl implements IFilmService{
 
 	@Autowired

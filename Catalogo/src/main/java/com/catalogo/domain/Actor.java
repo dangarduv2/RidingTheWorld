@@ -31,7 +31,7 @@ public class Actor implements Serializable {
 	@Column(name="last_update", nullable=false)
 	private Timestamp lastUpdate;
 
-	@OneToMany(mappedBy="actor")
+	@OneToMany(mappedBy="actor", fetch = FetchType.EAGER)
 	private List<FilmActor> filmActors;
 
 	public Actor() {
@@ -101,5 +101,24 @@ public class Actor implements Serializable {
 
 		return filmActor;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Actor [filmActors=" + filmActors + "]";
+	}
+
+
+
+	
+	
+	
+
+
+
+	
+	
+	
 
 }

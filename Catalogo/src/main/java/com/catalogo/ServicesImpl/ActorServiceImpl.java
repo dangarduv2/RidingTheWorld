@@ -3,11 +3,13 @@ package com.catalogo.ServicesImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.catalogo.DAO.ActorDAO;
 import com.catalogo.IServices.IActorService;
 import com.catalogo.domain.Actor;
 
+@Service
 public class ActorServiceImpl implements IActorService{
 
 	@Autowired

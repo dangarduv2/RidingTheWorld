@@ -31,7 +31,7 @@ public class Film implements Serializable {
 
 	private int length;
 
-	@Column(length=1)
+	@Column(length=2)
 	private String rating;
 
 	@Temporal(TemporalType.DATE)
