@@ -31,7 +31,7 @@ public class FilmDTO  {
 	private Date releaseYear;
 
 	@JsonProperty("features")
-	private Object specialFeatures;
+	private String specialFeatures;
 
 	@JsonProperty("titulo")
 	private String title;
