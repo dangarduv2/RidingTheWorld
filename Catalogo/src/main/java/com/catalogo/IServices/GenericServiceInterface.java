@@ -1,4 +1,4 @@
-package com.catalogo.Services;
+package com.catalogo.IServices;
 
 import java.util.List;
 

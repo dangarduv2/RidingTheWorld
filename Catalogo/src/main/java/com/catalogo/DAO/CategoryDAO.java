@@ -7,6 +7,6 @@ import com.catalogo.domain.Actor;
 import com.catalogo.domain.Category;
 
 @Repository
-public interface CategoryDAO extends CrudRepository<Category,Integer>{
+public interface CategoryDAO extends CrudRepository<Category,Byte>{
 
 }

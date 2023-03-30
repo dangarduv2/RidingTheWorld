@@ -1,4 +1,4 @@
-package com.catalogo.Services;
+package com.catalogo.IServices;
 
 import com.catalogo.domain.Actor;
 import com.catalogo.domain.Category;
