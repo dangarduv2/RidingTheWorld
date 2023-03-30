@@ -74,6 +74,27 @@ public class Film implements Serializable {
 	public Film() {
 	}
 
+	
+	
+	public Film(int filmId, String description, int length, String rating, Date releaseYear,
+			Object specialFeatures, String title, Language language1, Language language2, List<FilmActor> filmActors,
+			List<FilmCategory> filmCategories) {
+
+		this.filmId = filmId;
+		this.description = description;
+		this.length = length;
+		this.rating = rating;
+		this.releaseYear = releaseYear;
+		this.specialFeatures = specialFeatures;
+		this.title = title;
+		this.language1 = language1;
+		this.language2 = language2;
+		this.filmActors = filmActors;
+		this.filmCategories = filmCategories;
+	}
+
+
+
 	public int getFilmId() {
 		return this.filmId;
 	}
