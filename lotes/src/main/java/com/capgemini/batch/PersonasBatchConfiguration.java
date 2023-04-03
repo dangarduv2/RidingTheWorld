@@ -65,6 +65,13 @@ public class PersonasBatchConfiguration {
 				.writer(personaDBItemWriter).build();
 	}
 
+	//Job de lectura
+	/*@Bean
+	public Job personasJob(PersonasJobListener listener, Step importCSV2DBStep1) {
+		return new JobBuilder("personasJob", jobRepository).incrementer(new RunIdIncrementer()).listener(listener)
+				.start(importCSV2DBStep1).build();
+	}*/
+
 	@Bean
 	public Job personasJob(PersonasJobListener listener, Step importCSV2DBStep1, Step exportDB2CSVStep) {
 		return new JobBuilder("personasJob", jobRepository).incrementer(new RunIdIncrementer()).listener(listener)
