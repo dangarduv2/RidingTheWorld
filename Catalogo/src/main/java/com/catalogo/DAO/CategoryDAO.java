@@ -1,12 +1,11 @@
 package com.catalogo.DAO;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
-import com.catalogo.domain.Actor;
 import com.catalogo.domain.Category;
 
-@Repository
+@Component
 public interface CategoryDAO extends CrudRepository<Category,Byte>{
 
 }

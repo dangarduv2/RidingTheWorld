@@ -10,6 +10,8 @@ import com.catalogo.IServices.IActorService;
 @SpringBootApplication
 public class CatalogoApplication implements CommandLineRunner{
 
+	
+	
 	@Autowired
 	IActorService as;
 	

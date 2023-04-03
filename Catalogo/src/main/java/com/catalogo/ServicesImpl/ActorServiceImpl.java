@@ -12,7 +12,7 @@ import com.catalogo.domain.Actor;
 @Service
 public class ActorServiceImpl implements IActorService{
 
-	@Autowired
+	@Autowired(required=true)
 	ActorDAO ad;
 	
 	@Override
