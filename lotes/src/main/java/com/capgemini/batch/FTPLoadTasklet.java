@@ -27,8 +27,7 @@ public class FTPLoadTasklet implements Tasklet, InitializingBean {
 				return name.toLowerCase().endsWith(".csv");
 			}
 		});
-		// if(files.length % 2 == 1) throw new UnexpectedJobExecutionException("Error
-		// forzado");
+		// if(files.length % 2 == 1) throw new UnexpectedJobExecutionException("Errorforzado");
 		for (int i = 0; i < files.length; i++) {
 			Files.copy(files[i].toPath(), Paths.get("src/main/resources/" + files[i].getName()),
 					StandardCopyOption.REPLACE_EXISTING);
