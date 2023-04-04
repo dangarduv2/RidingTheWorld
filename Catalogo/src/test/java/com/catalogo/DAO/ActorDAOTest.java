@@ -48,7 +48,7 @@ class ActorDAOTest {
 	@ValueSource(ints = {22,24,15,19})
 	void deleteParametrized(int valores) {
 		for(Actor a:lista) {
-			if(a.getActorId()==valores) {when(ad.findById(valores)).thenReturn(Optional.of(a));	break;}	
+			if(a.getActorId()==valores) {when(ad.de(valores)).thenReturn(Optional.of(a));	break;}	
 		}
 		
 		Actor actor = ad.findById(valores).orElseThrow();
