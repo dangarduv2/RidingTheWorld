@@ -1,7 +1,7 @@
 package com.catalogo.DAO;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -23,6 +23,8 @@ class ActorDAOTest {
 	final List<Actor> lista = Lists.newArrayList(new Actor(22, "Daniel", "Garcia"), new Actor(24, "Victor", "Garcia"),
 			new Actor(15, "Ana", "Ferreras"), new Actor(19, "Alejandro", "Cotas"));
 
+	List<Actor> listaVacia = Lists.newArrayList();
+	
 	
 	@ParameterizedTest
 	@ValueSource(ints = {22,24,15,19})
@@ -43,21 +45,5 @@ class ActorDAOTest {
 		List<Actor> listaActores = (List<Actor>) ad.findAll();
 		assertEquals(4, listaActores.size());
 	}
-	
-	@ParameterizedTest
-	@ValueSource(ints = {22,24,15,19})
-	void deleteParametrized(int valores) {
-		for(Actor a:lista) {
-			if(a.getActorId()==valores) {when(ad.de(valores)).thenReturn(Optional.of(a));	break;}	
-		}
-		
-		Actor actor = ad.findById(valores).orElseThrow();
-		assertEquals(valores,actor.getActorId());
-	}
-	
-	
-	
-	
-	
 
 }
