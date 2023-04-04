@@ -8,7 +8,7 @@ import com.catalogo.domain.Category;
 import com.catalogo.domain.Film;
 import com.catalogo.domain.Language;
 
-@Repository
+@Repository("LanguageDAO")
 public interface LanguageDAO extends CrudRepository<Language,Byte>{
 
 }
