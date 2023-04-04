@@ -10,7 +10,7 @@ import com.catalogo.IServices.IFilmService;
 import com.catalogo.domain.Actor;
 import com.catalogo.domain.Category;
 import com.catalogo.domain.Film;
-@Service
+@Service("FilmServiceImpl")
 public class FilmServiceImpl implements IFilmService{
 
 	@Autowired

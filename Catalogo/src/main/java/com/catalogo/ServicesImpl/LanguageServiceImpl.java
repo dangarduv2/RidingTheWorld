@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.catalogo.DAO.LanguageDAO;
 import com.catalogo.IServices.ILanguageService;
 import com.catalogo.domain.Language;
-@Service
+@Service("LanguageServiceImpl")
 public class LanguageServiceImpl implements ILanguageService{
 
 	@Autowired

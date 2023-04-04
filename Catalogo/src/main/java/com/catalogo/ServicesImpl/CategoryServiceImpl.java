@@ -11,7 +11,7 @@ import com.catalogo.IServices.IActorService;
 import com.catalogo.IServices.ICategoryService;
 import com.catalogo.domain.Actor;
 import com.catalogo.domain.Category;
-@Service
+@Service("CategoryServiceImpl")
 public class CategoryServiceImpl implements ICategoryService{
 
 	@Autowired

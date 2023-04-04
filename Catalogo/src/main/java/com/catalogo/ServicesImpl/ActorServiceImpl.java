@@ -9,10 +9,10 @@ import com.catalogo.DAO.ActorDAO;
 import com.catalogo.IServices.IActorService;
 import com.catalogo.domain.Actor;
 
-@Service
+@Service("ActorServiceImpl")
 public class ActorServiceImpl implements IActorService{
 
-	@Autowired(required=true)
+	@Autowired()
 	ActorDAO ad;
 	
 	@Override
