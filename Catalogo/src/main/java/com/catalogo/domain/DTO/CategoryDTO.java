@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class CategoryDTO {
 	
 	@JsonProperty("id")
-	private byte categoryId;
+	private int categoryId;
 
 	@JsonProperty("nombre")
 	private String name;

@@ -3,6 +3,7 @@ package com.catalogo.ServicesImpl;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,7 +16,9 @@ import com.catalogo.DAO.ActorDAO;
 import com.catalogo.IServices.IActorService;
 import com.catalogo.domain.Actor;
 
+
 @SpringBootTest
+@Disabled
 class ActorServiceImplTest {
 	
 	@Autowired

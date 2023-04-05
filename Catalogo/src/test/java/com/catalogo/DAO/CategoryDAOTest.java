@@ -29,10 +29,10 @@ class CategoryDAOTest {
 	@ValueSource(ints = {1,2,3})
 	void findByIdNumParametrized(int valores) {
 		for(Category c:lista) {
-			if(c.getCategoryId()==valores) {when(cd.findById((byte)valores)).thenReturn(Optional.of(c));break;}	
+			if(c.getCategoryId()==valores) {when(cd.findById(valores)).thenReturn(Optional.of(c));break;}	
 		}
 		
-		Category category = cd.findById((byte)valores).orElseThrow();
+		Category category = cd.findById(valores).orElseThrow();
 		assertEquals(valores,category.getCategoryId());
 	}
 	

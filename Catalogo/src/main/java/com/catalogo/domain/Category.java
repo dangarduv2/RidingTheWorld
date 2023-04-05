@@ -19,16 +19,16 @@ public class Category implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="category_id", unique=true, nullable=false)
-	private byte categoryId;
+	private int categoryId;
 
-	@Column(name="last_update", nullable=false)
+	@Column(name="last_update", nullable=true)
 	private Timestamp lastUpdate;
 
 	@Column(nullable=false, length=25)
 	private String name;
 
 	//bi-directional many-to-one association to FilmCategory
-	@OneToMany(mappedBy="category")
+	@OneToMany(mappedBy="category", cascade = CascadeType.ALL)
 	private List<FilmCategory> filmCategories;
 
 	public Category() {
@@ -36,7 +36,7 @@ public class Category implements Serializable {
 
 	
 	
-	public Category(byte categoryId, String name) {
+	public Category(int categoryId, String name) {
 		super();
 		this.categoryId = categoryId;
 		this.name = name;
@@ -44,7 +44,7 @@ public class Category implements Serializable {
 
 
 
-	public byte getCategoryId() {
+	public int getCategoryId() {
 		return this.categoryId;
 	}
 

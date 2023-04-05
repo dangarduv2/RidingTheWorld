@@ -18,7 +18,7 @@ public class CategoryServiceImpl implements ICategoryService{
 	CategoryDAO cd;
 
 	@Override
-	public Category getById(Byte id) {
+	public Category getById(Integer id) {
 		return cd.findById(id).orElse(null);
 	}
 
@@ -28,13 +28,13 @@ public class CategoryServiceImpl implements ICategoryService{
 	}
 
 	@Override
-	public void delete(Byte id) {
+	public void delete(Integer id) {
 		cd.deleteById(id);
 		
 	}
 
 	@Override
-	public Category update(Byte id) {
+	public Category update(Integer id) {
 		Category category = this.getById(id);
 		return category;
 	}
