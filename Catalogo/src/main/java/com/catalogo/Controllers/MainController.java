@@ -20,14 +20,8 @@ public class MainController {
 	IActorService as;
 	
 	@GetMapping("/p")
-	public ResponseEntity<?> index() {
-		List<ActorDTO> lista = new ArrayList();
-		
-		List<Actor> listaActores= as.getAll();
-		for(Actor a : listaActores) {
-			lista.add(ActorDTO.from(a));
-		}
-		
-		return new ResponseEntity<List<ActorDTO>>(lista,HttpStatus.ACCEPTED);
+	public String index() {
+		as.delete(1);
+		return "ss";
 	}
 }

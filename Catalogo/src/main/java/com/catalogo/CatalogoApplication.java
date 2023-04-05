@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.catalogo.IServices.IActorService;
 
 @SpringBootApplication
-public class CatalogoApplication implements CommandLineRunner{
+public class CatalogoApplication{
 
 	
 	
@@ -17,14 +17,6 @@ public class CatalogoApplication implements CommandLineRunner{
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CatalogoApplication.class, args);
-	}
-
-	@Override
-	public void run(String... args) throws Exception {
-	 System.out.println("Hoooola");
-	 
-	 System.out.println(as.getById(3).toString());
-		
 	}
 
 }

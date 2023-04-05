@@ -1,6 +1,5 @@
 package com.catalogo.IServices;
 
-import org.springframework.stereotype.Component;
 
 import com.catalogo.domain.Actor;
 

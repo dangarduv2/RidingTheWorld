@@ -1,70 +1,110 @@
 package com.catalogo.ServicesImpl;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 import java.util.List;
 
-import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.mockito.Mock;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.catalogo.DAO.ActorDAO;
 import com.catalogo.IServices.IActorService;
 import com.catalogo.domain.Actor;
 
+@SpringBootTest
 class ActorServiceImplTest {
-
-	@Mock
-	IActorService ad = mock(ActorServiceImpl.class);
-
-	final List<Actor> lista = Lists.newArrayList(new Actor(22, "Daniel", "Garcia"), new Actor(24, "Victor", "Garcia"),
-			new Actor(15, "Ana", "Ferreras"), new Actor(19, "Alejandro", "Cotas"));
-
-	List<Actor> listaVacia = Lists.newArrayList();
-
+	
+	@Autowired
+	IActorService as ;
+	
+	@Autowired
+	ActorDAO ad ;
+	
 	@ParameterizedTest
-	@ValueSource(ints = { 22, 24, 15, 19 })
-	void getByIdNumParametrized(int valores) {
-		Actor actor = null;
-		for (Actor a : lista) {
-			if (a.getActorId() == valores) {
-				when(ad.getById(valores)).thenReturn(a);
-				actor = ad.getById(valores);
-				break;
-			}
-		}
-
+	@ValueSource(ints = { 1,2,3,4,5,6,7,8,9,10 })
+	void getById(int valores) {
+		
+		Actor actor = as.getById(valores);
+		
 		assertNotNull(actor);
-		assertEquals(valores, actor.getActorId());
+		
+		assertEquals(valores,actor.getActorId());
 	}
-
+	
+	
 	@Test
-	void testGetAll() {
-		when(ad.getAll()).thenReturn(lista);
-		List<Actor> listaActores=ad.getAll();
+	void getAll() {
+		
+		List<Actor> listaActores = as.getAll();
 		
 		assertNotNull(listaActores);
-		assertEquals(4,listaActores.size());
+		
+		assertTrue(listaActores.size() > 100);
 	}
-
+	
+	
 	@ParameterizedTest
-	@ValueSource(ints = { 22, 24, 15, 19 })
-	void testUpdate(int valores) {
-		List<Actor> listaDeActores=lista;
-		Actor actor = null;
-		for (Actor a : lista) {
-			if (a.getActorId() == valores) {
-				when(ad.update(valores)).thenReturn(a);
-				actor = ad.update(valores);
-				break;
-			}
-		}
-
-		assertNotNull(actor);
-		assertEquals(valores, actor.getActorId());
+	@ValueSource(ints = { 11,12,13,14,15,16,17,18,19,20 })
+	void delete(int valores) {
+		
+		assertNotNull(as.getById(valores));
+		
+		as.delete(valores);
+		
+		assertNull(as.getById(valores));
 	}
+	
+	
+	@ParameterizedTest
+	@ValueSource(ints = { 21,22,23,24,25})
+	void update(int valores) {
+		
+		Actor actor = as.getById(valores);
+		
+		assertNotNull(actor);
+		
+		switch (valores) {
+		case 21: actor.setFirstName("Nombre Update 1"); break;
+		case 22: actor.setFirstName("Nombre Update 2"); break;
+		case 23: actor.setFirstName("Nombre Update 3"); break;
+		case 24: actor.setFirstName("Nombre Update 4"); break;
+		case 25: actor.setFirstName("Nombre Update 5"); break;
+		}
+		
+		ad.save(actor);
+		
+		assertEquals(actor.getFirstName(), as.getById(valores).getFirstName());
+
+	}
+	
+	
+	@ParameterizedTest
+	@ValueSource(ints = { 21,22,23,24,25})
+	void save(int valores) {
+		
+		Actor actor=null;
+		
+		switch (valores) {
+		case 21: actor= new Actor(21, "KIRSTEN", "PALTROW"); break;
+		case 22: actor= new Actor(22, "ELVIS", "MARX"); break;
+		case 23: actor= new Actor(23, "SANDRA", "KILMER"); break;
+		case 24: actor= new Actor(24, "CAMERON", "STREEP"); break;
+		case 25: actor= new Actor(25, "KEVIN", "BLOOM"); break;
+		}
+		
+		assertNotNull(actor);
+		
+		ad.save(actor);
+		
+		assertEquals(actor.getFirstName(), as.getById(valores).getFirstName());
+
+	}
+	
+
+	
 
 }
