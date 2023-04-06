@@ -32,8 +32,7 @@ public class FilmServiceImpl implements IFilmService{
 	}
 
 	@Override
-	public Film update(Integer id) {
-		Film film = this.getById(id);
+	public Film update(Film film) {
 		return film;
 	}
 

@@ -32,9 +32,8 @@ public class ActorServiceImpl implements IActorService{
 	}
 
 	@Override
-	public Actor update(Integer id) {
-		Actor actor = this.getById(id);
-		return actor;
+	public Actor update(Actor actor) {
+		return ad.save(actor);
 	}
 
 }

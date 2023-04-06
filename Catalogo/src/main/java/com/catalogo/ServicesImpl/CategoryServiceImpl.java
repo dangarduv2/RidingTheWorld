@@ -34,9 +34,8 @@ public class CategoryServiceImpl implements ICategoryService{
 	}
 
 	@Override
-	public Category update(Integer id) {
-		Category category = this.getById(id);
-		return category;
+	public Category update(Category target) {
+		return target;
 	}
 
 }

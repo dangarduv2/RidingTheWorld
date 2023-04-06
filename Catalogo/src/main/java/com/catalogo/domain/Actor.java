@@ -28,7 +28,7 @@ public class Actor implements Serializable {
 	@Column(name="last_name", nullable=false, length=45)
 	private String lastName;
 
-	@Column(name="last_update", nullable=false)
+	@Column(name="last_update", nullable=true)
 	private Timestamp lastUpdate;
 
 	@OneToMany(mappedBy="actor", fetch = FetchType.EAGER, cascade= CascadeType.ALL)

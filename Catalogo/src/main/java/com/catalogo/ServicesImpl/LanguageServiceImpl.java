@@ -31,8 +31,7 @@ public class LanguageServiceImpl implements ILanguageService{
 	}
 
 	@Override
-	public Language update(Byte id) {
-		Language language = this.getById(id);
+	public Language update(Language language) {
 		return language;
 	}
 

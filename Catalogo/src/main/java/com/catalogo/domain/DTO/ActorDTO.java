@@ -1,22 +1,24 @@
 package com.catalogo.domain.DTO;
 
-import java.io.Serializable;
 
 import com.catalogo.domain.Actor;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Value;
 
 
 @Value 
 public class ActorDTO {
 	
-	@JsonProperty("id")
+	@NotNull
 	private int actorId;
 
-	@JsonProperty("nombre")
+	@NotBlank
 	private String firstName;
 
-	@JsonProperty("apellido")
+	@NotBlank
 	private String lastName;
 
 	public static ActorDTO from(Actor target) {
