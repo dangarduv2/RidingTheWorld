@@ -38,4 +38,10 @@ public class CategoryServiceImpl implements ICategoryService{
 		return target;
 	}
 
+	@Override
+	public List<Category> getByPage(int page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

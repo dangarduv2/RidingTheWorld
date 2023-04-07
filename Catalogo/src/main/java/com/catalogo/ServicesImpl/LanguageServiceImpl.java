@@ -35,4 +35,10 @@ public class LanguageServiceImpl implements ILanguageService{
 		return language;
 	}
 
+	@Override
+	public List<Language> getByPage(int page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

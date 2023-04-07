@@ -1,6 +1,7 @@
 package com.catalogo.Controllers;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,9 +23,13 @@ import jakarta.validation.Valid;
 @RequestMapping(path = "catalogo/Actor")
 public class ActorControlador {
 
+	
+	
 	@Autowired
 	IActorService as;
 
+
+	
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<?> getUsuarioById(@PathVariable Optional<Integer> id) {
 
@@ -42,14 +47,27 @@ public class ActorControlador {
 	
 	
 	
-	@GetMapping(path = "/")
-	public ResponseEntity<?> getAllUsuarios() {
+	
+	
+	@GetMapping(path = "/page/{n}")
+	public ResponseEntity<?> getAllUsuarios(@PathVariable Optional<Integer> n) {
+		List<Actor> actores = as.getByPage(n.get());
+		if(actores.size()<1) {
+			return new ResponseEntity<String>("No existe ese número de página", HttpStatus.NOT_FOUND);
+		}
 		
-		return new ResponseEntity<List<Actor>>(as.getAll(), HttpStatus.OK);
-
+		List<ActorDTO> listDTO = new ArrayList<ActorDTO>();
+		for(Actor act: actores) {
+			listDTO.add(ActorDTO.from(act));
+		}
+		return new ResponseEntity<List<ActorDTO>>(listDTO, HttpStatus.OK);
+		
+	
 	}
 	
 
+	
+	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable Optional<Integer> id) {
 		if (id.isPresent()) {
@@ -61,6 +79,8 @@ public class ActorControlador {
 		}
 		return new ResponseEntity<String>("El usuario con tal ID no existe", HttpStatus.NOT_FOUND);
 	}
+	
+	
 	
 	
 	@PutMapping("/{id}")

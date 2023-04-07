@@ -5,6 +5,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.catalogo.DAO.ActorDAO;
@@ -27,10 +30,15 @@ public class ActorServiceImpl implements IActorService{
 		List<Actor> listaa = new ArrayList<Actor>();
 		Iterator<Actor> ite =  ad.findAll().iterator();
 		while (ite.hasNext()) {
-			System.out.println(ite.next().getFirstName());
 	          listaa.add(ite.next());
 	       }
 		return listaa;
+	}
+
+	public List<Actor> getByPage(int page) {
+		Pageable pageRequest = PageRequest.of(page, 10);
+		Page<Actor> actores = ad.findAll(pageRequest);
+		return actores.getContent();
 	}
 
 	@Override

@@ -36,4 +36,10 @@ public class FilmServiceImpl implements IFilmService{
 		return film;
 	}
 
+	@Override
+	public List<Film> getByPage(int page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
