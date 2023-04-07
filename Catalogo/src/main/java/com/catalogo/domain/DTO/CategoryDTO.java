@@ -2,6 +2,8 @@ package com.catalogo.domain.DTO;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Value;
 
 import java.sql.Timestamp;
@@ -15,10 +17,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Value
 public class CategoryDTO {
 	
-	@JsonProperty("id")
+	@NotNull
 	private int categoryId;
 
-	@JsonProperty("nombre")
+	@NotBlank
 	private String name;
 	
 	  public static CategoryDTO from(Category target) {

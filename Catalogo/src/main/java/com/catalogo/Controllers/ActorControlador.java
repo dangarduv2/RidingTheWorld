@@ -1,5 +1,6 @@
 package com.catalogo.Controllers;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,6 +39,16 @@ public class ActorControlador {
 		return new ResponseEntity<String>("El usuario con tal ID no existe", HttpStatus.NOT_FOUND);
 
 	}
+	
+	
+	
+	@GetMapping(path = "/")
+	public ResponseEntity<?> getAllUsuarios() {
+		
+		return new ResponseEntity<List<Actor>>(as.getAll(), HttpStatus.OK);
+
+	}
+	
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable Optional<Integer> id) {

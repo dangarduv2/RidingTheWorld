@@ -1,5 +1,7 @@
 package com.catalogo.ServicesImpl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,13 @@ public class ActorServiceImpl implements IActorService{
 
 	@Override
 	public List<Actor> getAll() {
-		return (List<Actor>) ad.findAll();
+		List<Actor> listaa = new ArrayList<Actor>();
+		Iterator<Actor> ite =  ad.findAll().iterator();
+		while (ite.hasNext()) {
+			System.out.println(ite.next().getFirstName());
+	          listaa.add(ite.next());
+	       }
+		return listaa;
 	}
 
 	@Override

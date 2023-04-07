@@ -11,17 +11,19 @@ import com.catalogo.domain.FilmActor;
 import com.catalogo.domain.FilmCategory;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.validation.constraints.NotNull;
+
 @Value
 public class FilmDTO  {
 
 
-	@JsonProperty("id")
+	@NotNull
 	private int filmId;
 
 	@JsonProperty("descripcion")
 	private String description;
 
-	@JsonProperty("duracion")
+	@NotNull
 	private int length;
 
 	@JsonProperty("rate")
