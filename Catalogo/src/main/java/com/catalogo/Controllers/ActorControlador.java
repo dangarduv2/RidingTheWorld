@@ -27,7 +27,7 @@ import com.catalogo.domain.DTO.ActorDTO;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(path = "catalogo/Actor")
+@RequestMapping(path = "catalogo/actor")
 public class ActorControlador {
 
 	@Autowired

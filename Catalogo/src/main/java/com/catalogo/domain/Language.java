@@ -18,7 +18,7 @@ public class Language implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="language_id", unique=true, nullable=false)
 	@NotNull
-	private int languageId;
+	private Integer languageId;
 
 	@Column(name="last_update", nullable=false)
 	@NotNull
@@ -29,25 +29,25 @@ public class Language implements Serializable {
 	private String name;
 
 
-	@OneToMany(mappedBy="language1")
+	@OneToMany(mappedBy="language1", fetch = FetchType.LAZY)
 	private List<Film> films1;
 
 
-	@OneToMany(mappedBy="language2")
+	@OneToMany(mappedBy="language2", fetch = FetchType.LAZY)
 	private List<Film> films2;
 
 	public Language() {
 	}
 	
 	
-	public Language(int languageId, String name, Timestamp lastUpdate) {
+	public Language(Integer languageId, String name, Timestamp lastUpdate) {
 		this.languageId = languageId;
 		this.name = name;
 		this.lastUpdate = lastUpdate;
 	}
 	
 
-	public Language(int languageId, String name, List<Film> films1, List<Film> films2) {
+	public Language(Integer languageId, String name, List<Film> films1, List<Film> films2) {
 		super();
 		this.languageId = languageId;
 		this.name = name;
@@ -57,11 +57,11 @@ public class Language implements Serializable {
 
 
 
-	public int getLanguageId() {
+	public Integer getLanguageId() {
 		return this.languageId;
 	}
 
-	public void setLanguageId(byte languageId) {
+	public void setLanguageId(Integer languageId) {
 		this.languageId = languageId;
 	}
 

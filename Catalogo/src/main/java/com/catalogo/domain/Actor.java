@@ -31,7 +31,7 @@ public class Actor implements Serializable {
 	@NotNull
 	private Timestamp lastUpdate;
 
-	@OneToMany(mappedBy="actor", fetch = FetchType.EAGER, cascade= CascadeType.ALL)
+	@OneToMany(mappedBy="actor", fetch = FetchType.LAZY, cascade= CascadeType.ALL)
 	private List<FilmActor> filmActors;
 
 	public Actor() {

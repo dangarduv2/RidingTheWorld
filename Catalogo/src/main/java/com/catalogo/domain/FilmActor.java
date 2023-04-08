@@ -21,12 +21,12 @@ public class FilmActor implements Serializable {
 	@Column(name="last_update", nullable=false)
 	private Timestamp lastUpdate;
 
-	//bi-directional many-to-one association to Actor
+
 	@ManyToOne
 	@JoinColumn(name="actor_id", nullable=false, insertable=false, updatable=false)
 	private Actor actor;
 
-	//bi-directional many-to-one association to Film
+	
 	@ManyToOne
 	@JoinColumn(name="film_id", nullable=false, insertable=false, updatable=false)
 	private Film film;

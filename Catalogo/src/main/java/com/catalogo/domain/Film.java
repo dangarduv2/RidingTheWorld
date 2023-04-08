@@ -30,7 +30,7 @@ public class Film implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="release_year", nullable=true)
-	private Date releaseYear;
+	private int releaseYear;
 
 	@Column(name="rental_duration", nullable=false)
 	private byte rentalDuration;
@@ -58,11 +58,11 @@ public class Film implements Serializable {
 	private Language language2;
 
 	
-	@OneToMany(mappedBy="film")
+	@OneToMany(mappedBy="film",fetch = FetchType.LAZY)
 	private List<FilmActor> filmActors;
 
 	
-	@OneToMany(mappedBy="film")
+	@OneToMany(mappedBy="film", fetch = FetchType.LAZY)
 	private List<FilmCategory> filmCategories;
 
 	public Film() {
@@ -70,9 +70,8 @@ public class Film implements Serializable {
 
 	
 	
-	public Film(int filmId, String description, int length, String rating, Date releaseYear,
-			String specialFeatures, String title, Language language1, Language language2, List<FilmActor> filmActors,
-			List<FilmCategory> filmCategories) {
+	public Film(int filmId, String description, int length, String rating, int releaseYear,
+			String specialFeatures, String title, Language language1, Language language2, Timestamp lastUpdate) {
 
 		this.filmId = filmId;
 		this.description = description;
@@ -83,10 +82,11 @@ public class Film implements Serializable {
 		this.title = title;
 		this.language1 = language1;
 		this.language2 = language2;
-		this.filmActors = filmActors;
-		this.filmCategories = filmCategories;
+		this.lastUpdate= lastUpdate;
 	}
 
+
+	
 
 
 	public int getFilmId() {
@@ -129,11 +129,11 @@ public class Film implements Serializable {
 		this.rating = rating;
 	}
 
-	public Date getReleaseYear() {
+	public int getReleaseYear() {
 		return this.releaseYear;
 	}
 
-	public void setReleaseYear(Date releaseYear) {
+	public void setReleaseYear(int releaseYear) {
 		this.releaseYear = releaseYear;
 	}
 

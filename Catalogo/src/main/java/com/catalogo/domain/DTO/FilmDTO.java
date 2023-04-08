@@ -1,6 +1,8 @@
 package com.catalogo.domain.DTO;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+
 import lombok.Value;
 import java.util.Date;
 
@@ -20,39 +22,38 @@ public class FilmDTO  {
 	@NotNull
 	private int filmId;
 
-	@JsonProperty("descripcion")
+	
 	private String description;
 
-	@NotNull
+	
 	private int length;
 
-	@JsonProperty("rate")
+	
 	private String rating;
 
-	@JsonProperty("realesed")
-	private Date releaseYear;
+	
+	private int releaseYear;
 
-	@JsonProperty("features")
+	
 	private String specialFeatures;
 
-	@JsonProperty("titulo")
+	
 	private String title;
 
-	@JsonProperty("idioma_1")
-	private Language language1;
+	
+	private LanguageDTO language1;
 
-	@JsonProperty("idioma_2")
-	private Language language2;
+	
+	private LanguageDTO language2;
 
-	@JsonProperty("listaActores")
-	private List<FilmActor> filmActors;
-
-	@JsonProperty("listaCategorias")
-	private List<FilmCategory> filmCategories;
 
 	
 	
 	public static FilmDTO from(Film target) {
+		LanguageDTO lan1 =LanguageDTO.from(target.getLanguage1());
+		LanguageDTO lan2 =LanguageDTO.from(target.getLanguage2());
+		if(lan1.getLanguageId()==null)lan1=null;
+		if(lan2.getLanguageId()==null)lan2=null;
 		return new FilmDTO(
 				target.getFilmId(),
 				target.getDescription(),
@@ -61,13 +62,16 @@ public class FilmDTO  {
 				target.getReleaseYear(),
 				target.getSpecialFeatures(),
 				target.getTitle(),
-				target.getLanguage1(),
-				target.getLanguage2(),
-				target.getFilmActors(),
-				target.getFilmCategories());
+				lan1,
+				lan2
+);
 	}
 	
 	public static Film from(FilmDTO target) {
+		Language lan1 =LanguageDTO.from(target.getLanguage1());
+		Language lan2 =LanguageDTO.from(target.getLanguage2());
+		if(lan1.getLanguageId()==null)lan1=null;
+		if(lan2.getLanguageId()==null)lan2=null;
 		return new Film(
 				target.getFilmId(),
 				target.getDescription(),
@@ -76,10 +80,11 @@ public class FilmDTO  {
 				target.getReleaseYear(),
 				target.getSpecialFeatures(),
 				target.getTitle(),
-				target.getLanguage1(),
-				target.getLanguage2(),
-				target.getFilmActors(),
-				target.getFilmCategories());
+				
+				lan1,
+				lan2,
+				new Timestamp(System.currentTimeMillis())
+		);
 	}
 
 }

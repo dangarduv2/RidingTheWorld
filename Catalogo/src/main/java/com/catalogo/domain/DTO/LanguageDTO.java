@@ -16,22 +16,33 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class LanguageDTO {
 
 
-	private int languageId;
+	private Integer languageId;
 
 
 	private String name;
 
 	public static LanguageDTO from(Language target) {
+		Integer lanid = null;
+		String nombre=null;
+		if(target !=null) {lanid=target.getLanguageId();
+		nombre = target.getName();}
 		return new LanguageDTO(
-				target.getLanguageId(),
-				target.getName());
+				lanid,
+				nombre);
 	}
 	
 	public static Language from(LanguageDTO target) {
+		Integer lanid = null;
+		String nombre=null;
+		Timestamp time = null;
+		if(target !=null) {lanid=target.getLanguageId();
+		nombre = target.getName();
+		time = new Timestamp(System.currentTimeMillis());
+		}
 		return new Language(
-				target.getLanguageId(),
-				target.getName(), 
-				new Timestamp(System.currentTimeMillis()));
+				lanid,
+				nombre,time 
+				);
 	}
 
 	

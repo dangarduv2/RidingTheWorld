@@ -1,5 +1,6 @@
 package com.catalogo.Controllers;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.catalogo.DAO.FilmDAO;
 import com.catalogo.IServices.ICategoryService;
 import com.catalogo.IServices.IFilmService;
 import com.catalogo.domain.Category;
@@ -31,8 +33,6 @@ public class FilmControlador {
 	
 	@Autowired
 	IFilmService fs;
-
-
 	
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<?> getFilmById(@PathVariable Optional<Integer> id) {
@@ -48,7 +48,6 @@ public class FilmControlador {
 		return new ResponseEntity<String>("La pelicula con tal ID no existe", HttpStatus.NOT_FOUND);
 
 	}
-	
 	
 	
 	
@@ -73,7 +72,7 @@ public class FilmControlador {
 	
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable Optional<Integer> id) {
+	public ResponseEntity<?> delete(@PathVariable Optional<Integer> id) throws SQLIntegrityConstraintViolationException {
 		if (id.isPresent()) {
 			if (fs.getById(id.get()) != null) {
 				fs.delete(id.get());
@@ -89,7 +88,7 @@ public class FilmControlador {
 	
 	@PutMapping("/")
 	public ResponseEntity<?> update(@Valid FilmDTO item,BindingResult result){
-
+		
 		if(!result.hasErrors() && (fs.getById(item.getFilmId()) != null )) {
 			fs.update(FilmDTO.from(item));
 			return new ResponseEntity<FilmDTO>(item, HttpStatus.OK);

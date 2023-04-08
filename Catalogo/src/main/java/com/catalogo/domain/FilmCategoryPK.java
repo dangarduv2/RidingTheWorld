@@ -9,7 +9,7 @@ import jakarta.persistence.*;
  */
 @Embeddable
 public class FilmCategoryPK implements Serializable {
-	//default serial version id, required for serializable classes.
+
 	private static final long serialVersionUID = 1L;
 
 	@Column(name="film_id", insertable=false, updatable=false, unique=true, nullable=false)
