@@ -46,4 +46,9 @@ public class FilmServiceImpl implements IFilmService{
 		return films.getContent();
 	}
 
+	@Override
+	public Film create(Film target) {
+		return fd.save(target);
+	}
+
 }

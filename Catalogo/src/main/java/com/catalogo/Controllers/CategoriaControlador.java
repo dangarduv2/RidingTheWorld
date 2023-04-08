@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -85,6 +86,18 @@ public class CategoriaControlador {
 	}
 	
 	
+	@PostMapping("/")
+	public ResponseEntity<?> create(@Valid CategoryDTO item,BindingResult result){
+
+		if(!result.hasErrors() && (cs.getById(item.getCategoryId()) == null )) {
+			cs.create(CategoryDTO.from(item));
+			return new ResponseEntity<CategoryDTO>(item, HttpStatus.OK);
+		}else if(result.hasErrors()) {
+			return new ResponseEntity<String>("Los datos intorducidos no son válidos" , HttpStatus.BAD_REQUEST);
+		}else {
+				return new ResponseEntity<String>("La categoria con id "+item.getCategoryId()+" ya existe", HttpStatus.BAD_REQUEST);
+		}	
+	}
 	
 	
 	@PutMapping("/")

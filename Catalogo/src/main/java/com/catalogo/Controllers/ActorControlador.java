@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -87,6 +88,21 @@ public class ActorControlador {
 					HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@PostMapping("/")
+	public ResponseEntity<?> create(@Valid ActorDTO item, BindingResult result) {
+
+		if (!result.hasErrors() && (as.getById(item.getActorId()) == null)) {
+			as.create(ActorDTO.from(item));
+			return new ResponseEntity<ActorDTO>(item, HttpStatus.OK);
+		} else if (result.hasErrors()) {
+			return new ResponseEntity<String>("Los datos intorducidos no son válidos", HttpStatus.BAD_REQUEST);
+		} else {
+			return new ResponseEntity<String>("El usuario con id " + item.getActorId() + " ya existe",
+					HttpStatus.BAD_REQUEST);
+		}
+	}
+	
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

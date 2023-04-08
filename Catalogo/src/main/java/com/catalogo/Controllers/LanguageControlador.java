@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -84,6 +85,19 @@ public class LanguageControlador {
 		return new ResponseEntity<String>("La lengua con tal ID no existe", HttpStatus.NOT_FOUND);
 	}
 	
+	
+	@PostMapping("/")
+	public ResponseEntity<?> create(@Valid LanguageDTO item,BindingResult result){
+
+		if(!result.hasErrors() && (ls.getById(item.getLanguageId()) == null )) {
+			ls.create(LanguageDTO.from(item));
+			return new ResponseEntity<LanguageDTO>(item, HttpStatus.OK);
+		}else if(result.hasErrors()) {
+			return new ResponseEntity<String>("Los datos intorducidos no son válidos" , HttpStatus.BAD_REQUEST);
+		}else {
+				return new ResponseEntity<String>("La lengua con id "+item.getLanguageId()+" ya existe", HttpStatus.BAD_REQUEST);
+		}	
+	}
 	
 	
 	

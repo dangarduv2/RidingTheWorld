@@ -46,4 +46,9 @@ public class LanguageServiceImpl implements ILanguageService{
 		return languages.getContent();
 	}
 
+	@Override
+	public Language create(Language target) {
+		return ld.save(target);
+	}
+
 }

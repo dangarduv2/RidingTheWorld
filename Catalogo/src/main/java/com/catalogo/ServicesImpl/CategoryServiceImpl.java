@@ -47,4 +47,9 @@ public class CategoryServiceImpl implements ICategoryService{
 		return categorias.getContent();
 	}
 
+	@Override
+	public Category create(Category target) {
+		return cd.save(target);
+	}
+
 }

@@ -52,4 +52,9 @@ public class ActorServiceImpl implements IActorService{
 		return ad.save(actor);
 	}
 
+	@Override
+	public Actor create(Actor target) {
+		return ad.save(target);
+	}
+
 }
