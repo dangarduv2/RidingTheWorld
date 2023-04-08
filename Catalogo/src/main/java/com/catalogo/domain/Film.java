@@ -7,14 +7,8 @@ import java.util.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
-
-/**
- * The persistent class for the film database table.
- * 
- */
 @Entity
 @Table(name="film")
-@NamedQuery(name="Film.findAll", query="SELECT f FROM Film f")
 public class Film implements Serializable {
 	private static final long serialVersionUID = 1L;
 

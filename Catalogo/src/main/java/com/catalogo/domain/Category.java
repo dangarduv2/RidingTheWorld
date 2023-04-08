@@ -2,6 +2,9 @@ package com.catalogo.domain;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -19,15 +22,18 @@ public class Category implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="category_id", unique=true, nullable=false)
+	@NotNull
 	private int categoryId;
 
-	@Column(name="last_update", nullable=true)
+	@Column(name="last_update", nullable=false)
+	@NotNull
 	private Timestamp lastUpdate;
 
 	@Column(nullable=false, length=25)
+	@NotBlank
 	private String name;
 
-	//bi-directional many-to-one association to FilmCategory
+
 	@OneToMany(mappedBy="category", cascade = CascadeType.ALL)
 	private List<FilmCategory> filmCategories;
 
@@ -37,9 +43,14 @@ public class Category implements Serializable {
 	
 	
 	public Category(int categoryId, String name) {
-		super();
 		this.categoryId = categoryId;
 		this.name = name;
+	}
+	
+	public Category(int categoryId, String name, Timestamp lastUpdate) {
+		this.categoryId = categoryId;
+		this.name = name;
+		this.lastUpdate= lastUpdate;
 	}
 
 

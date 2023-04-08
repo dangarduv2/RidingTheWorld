@@ -2,25 +2,30 @@ package com.catalogo.domain;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.sql.Timestamp;
 import java.util.List;
 
 
 @Entity
 @Table(name="language")
-@NamedQuery(name="Language.findAll", query="SELECT l FROM Language l")
 public class Language implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="language_id", unique=true, nullable=false)
+	@NotNull
 	private int languageId;
 
 	@Column(name="last_update", nullable=false)
+	@NotNull
 	private Timestamp lastUpdate;
 
 	@Column(nullable=false, length=20)
+	@NotBlank
 	private String name;
 
 
@@ -35,10 +40,10 @@ public class Language implements Serializable {
 	}
 	
 	
-	public Language(int languageId, String name) {
-		super();
+	public Language(int languageId, String name, Timestamp lastUpdate) {
 		this.languageId = languageId;
 		this.name = name;
+		this.lastUpdate = lastUpdate;
 	}
 	
 

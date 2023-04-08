@@ -30,7 +30,8 @@ public class LanguageDTO {
 	public static Language from(LanguageDTO target) {
 		return new Language(
 				target.getLanguageId(),
-				target.getName());
+				target.getName(), 
+				new Timestamp(System.currentTimeMillis()));
 	}
 
 	

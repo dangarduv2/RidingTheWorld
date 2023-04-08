@@ -1,6 +1,8 @@
 package com.catalogo.domain.DTO;
 
 
+import java.sql.Timestamp;
+
 import com.catalogo.domain.Actor;
 
 
@@ -26,7 +28,13 @@ public class ActorDTO {
 	}
 
 	public static Actor from(ActorDTO target) {
-		return new Actor(target.getActorId(), target.getFirstName(), target.getLastName());
+		return new Actor(
+				target.getActorId(), 
+				target.getFirstName(), 
+				target.getLastName(),
+				new Timestamp(System.currentTimeMillis())
+				);
+				
 	}
 	
 
