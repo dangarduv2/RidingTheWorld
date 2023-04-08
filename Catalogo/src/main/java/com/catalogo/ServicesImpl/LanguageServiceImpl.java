@@ -3,10 +3,14 @@ package com.catalogo.ServicesImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.catalogo.DAO.LanguageDAO;
 import com.catalogo.IServices.ILanguageService;
+import com.catalogo.domain.Category;
 import com.catalogo.domain.Language;
 @Service("LanguageServiceImpl")
 public class LanguageServiceImpl implements ILanguageService{
@@ -15,7 +19,7 @@ public class LanguageServiceImpl implements ILanguageService{
 	LanguageDAO ld;
 	
 	@Override
-	public Language getById(Byte id) {
+	public Language getById(Integer id) {
 		return ld.findById(id).orElse(null);
 	}
 
@@ -25,20 +29,21 @@ public class LanguageServiceImpl implements ILanguageService{
 	}
 
 	@Override
-	public void delete(Byte id) {
+	public void delete(Integer id) {
 		ld.deleteById(id);
 		
 	}
 
 	@Override
 	public Language update(Language language) {
-		return language;
+		return ld.save(language);
 	}
 
 	@Override
 	public List<Language> getByPage(int page) {
-		// TODO Auto-generated method stub
-		return null;
+		Pageable pageRequest = PageRequest.of(page, 10);
+		Page<Language> languages = ld.findAll(pageRequest);
+		return languages.getContent();
 	}
 
 }

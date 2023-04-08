@@ -6,10 +6,6 @@ import java.sql.Timestamp;
 import java.util.List;
 
 
-/**
- * The persistent class for the language database table.
- * 
- */
 @Entity
 @Table(name="language")
 @NamedQuery(name="Language.findAll", query="SELECT l FROM Language l")
@@ -19,7 +15,7 @@ public class Language implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="language_id", unique=true, nullable=false)
-	private byte languageId;
+	private int languageId;
 
 	@Column(name="last_update", nullable=false)
 	private Timestamp lastUpdate;
@@ -27,11 +23,11 @@ public class Language implements Serializable {
 	@Column(nullable=false, length=20)
 	private String name;
 
-	//bi-directional many-to-one association to Film
+
 	@OneToMany(mappedBy="language1")
 	private List<Film> films1;
 
-	//bi-directional many-to-one association to Film
+
 	@OneToMany(mappedBy="language2")
 	private List<Film> films2;
 
@@ -39,8 +35,14 @@ public class Language implements Serializable {
 	}
 	
 	
+	public Language(int languageId, String name) {
+		super();
+		this.languageId = languageId;
+		this.name = name;
+	}
+	
 
-	public Language(byte languageId, String name, List<Film> films1, List<Film> films2) {
+	public Language(int languageId, String name, List<Film> films1, List<Film> films2) {
 		super();
 		this.languageId = languageId;
 		this.name = name;
@@ -50,7 +52,7 @@ public class Language implements Serializable {
 
 
 
-	public byte getLanguageId() {
+	public int getLanguageId() {
 		return this.languageId;
 	}
 

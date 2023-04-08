@@ -26,7 +26,7 @@ public class Film implements Serializable {
 	@Lob
 	private String description;
 
-	@Column(name="last_update", nullable=false)
+	@Column(name="last_update", nullable=true)
 	private Timestamp lastUpdate;
 
 	private int length;
@@ -35,7 +35,7 @@ public class Film implements Serializable {
 	private String rating;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="release_year")
+	@Column(name="release_year", nullable=true)
 	private Date releaseYear;
 
 	@Column(name="rental_duration", nullable=false)
@@ -53,21 +53,21 @@ public class Film implements Serializable {
 	@Column(nullable=false, length=128)
 	private String title;
 
-	//bi-directional many-to-one association to Language
+	
 	@ManyToOne
-	@JoinColumn(name="language_id", nullable=false)
+	@JoinColumn(name="language_id", nullable=true)
 	private Language language1;
 
-	//bi-directional many-to-one association to Language
+	
 	@ManyToOne
-	@JoinColumn(name="original_language_id")
+	@JoinColumn(name="original_language_id", nullable=true)
 	private Language language2;
 
-	//bi-directional many-to-one association to FilmActor
+	
 	@OneToMany(mappedBy="film")
 	private List<FilmActor> filmActors;
 
-	//bi-directional many-to-one association to FilmCategory
+	
 	@OneToMany(mappedBy="film")
 	private List<FilmCategory> filmCategories;
 

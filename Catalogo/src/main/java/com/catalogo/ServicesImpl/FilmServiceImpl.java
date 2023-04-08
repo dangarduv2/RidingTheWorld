@@ -3,6 +3,9 @@ package com.catalogo.ServicesImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.catalogo.DAO.FilmDAO;
@@ -33,13 +36,14 @@ public class FilmServiceImpl implements IFilmService{
 
 	@Override
 	public Film update(Film film) {
-		return film;
+		return fd.save(film);
 	}
 
 	@Override
 	public List<Film> getByPage(int page) {
-		// TODO Auto-generated method stub
-		return null;
+		Pageable pageRequest = PageRequest.of(page, 10);
+		Page<Film> films = fd.findAll(pageRequest);
+		return films.getContent();
 	}
 
 }

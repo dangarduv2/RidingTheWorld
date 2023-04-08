@@ -83,16 +83,16 @@ public class ActorControlador {
 	
 	
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@Valid ActorDTO item,BindingResult result,@PathVariable Optional<Integer> id){
+	@PutMapping("/")
+	public ResponseEntity<?> update(@Valid ActorDTO item,BindingResult result){
 
-		if(id.isPresent() && !result.hasErrors() && (as.getById(id.get()) != null )) {
+		if(!result.hasErrors() && (as.getById(item.getActorId()) != null )) {
 			as.update(ActorDTO.from(item));
 			return new ResponseEntity<ActorDTO>(item, HttpStatus.OK);
 		}else if(result.hasErrors()) {
 			return new ResponseEntity<String>("Los datos intorducidos no son válidos" , HttpStatus.BAD_REQUEST);
 		}else {
-				return new ResponseEntity<String>("El usuario con id "+id.get()+" no existe", HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<String>("El usuario con id "+item.getActorId()+" no existe", HttpStatus.BAD_REQUEST);
 		}	
 	}
 

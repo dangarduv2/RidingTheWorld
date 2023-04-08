@@ -3,6 +3,9 @@ package com.catalogo.ServicesImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.catalogo.DAO.ActorDAO;
@@ -34,14 +37,14 @@ public class CategoryServiceImpl implements ICategoryService{
 	}
 
 	@Override
-	public Category update(Category target) {
-		return target;
+	public Category update(Category category) {
+		return cd.save(category);
 	}
 
-	@Override
 	public List<Category> getByPage(int page) {
-		// TODO Auto-generated method stub
-		return null;
+		Pageable pageRequest = PageRequest.of(page, 10);
+		Page<Category> categorias = cd.findAll(pageRequest);
+		return categorias.getContent();
 	}
 
 }

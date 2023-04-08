@@ -15,30 +15,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Value
 public class LanguageDTO {
 
-	@JsonProperty("id")
-	private byte languageId;
 
-	@JsonProperty("id")
+	private int languageId;
+
+
 	private String name;
 
-	@JsonProperty("id")
-	private List<Film> films1;
-
-	@JsonProperty("id")
-	private List<Film> films2;
-
 	public static LanguageDTO from(Language target) {
-		return new LanguageDTO(target.getLanguageId(),
-				target.getName(),
-				target.getFilms1(),
-				target.getFilms2());
+		return new LanguageDTO(
+				target.getLanguageId(),
+				target.getName());
 	}
 	
 	public static Language from(LanguageDTO target) {
-		return new Language(target.getLanguageId(),
-				target.getName(),
-				target.getFilms1(),
-				target.getFilms2());
+		return new Language(
+				target.getLanguageId(),
+				target.getName());
 	}
 
 	
