@@ -1,5 +1,6 @@
 package com.catalogo.Controllers;
 
+
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,21 +11,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.DeleteMapping;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.catalogo.DAO.FilmDAO;
-import com.catalogo.IServices.ICategoryService;
+
 import com.catalogo.IServices.IFilmService;
 import com.catalogo.IServices.ILanguageService;
-import com.catalogo.domain.Category;
+
 import com.catalogo.domain.Film;
-import com.catalogo.domain.Language;
-import com.catalogo.domain.DTO.CategoryDTO;
+
 import com.catalogo.domain.DTO.FilmDTO;
 
 import jakarta.validation.Valid;
@@ -101,19 +101,27 @@ public class FilmControlador {
 	
 	
 	@PutMapping("/")
-	public ResponseEntity<?> update(@Valid FilmDTO item,BindingResult result){
+	public ResponseEntity<?> update(@Valid FilmDTO item,BindingResult result) {
 		
 		if(!result.hasErrors() && (fs.getById(item.getFilmId()) != null )) {
 			fs.update(FilmDTO.from(item,ls));
 			return new ResponseEntity<FilmDTO>(item, HttpStatus.OK);
 		}else if(result.hasErrors()) {
-			List<ObjectError> erro = result.getAllErrors();
-			for(ObjectError ee: erro) {
-				System.out.println(ee.toString());
-			}
 			return new ResponseEntity<String>("Los datos intorducidos no son válidos" , HttpStatus.BAD_REQUEST);
 		}else {
 				return new ResponseEntity<String>("La pelicula con id "+item.getFilmId()+" no existe", HttpStatus.BAD_REQUEST);
+		}	
+	}
+	
+	@PostMapping("/")
+	public ResponseEntity<?> crear(@Valid FilmDTO item,BindingResult result){
+		if(!result.hasErrors() && (fs.getById(item.getFilmId()) == null )) {
+			fs.create(FilmDTO.from(item,ls));
+			return new ResponseEntity<FilmDTO>(item, HttpStatus.OK);
+		}else if(result.hasErrors()) {
+			return new ResponseEntity<String>("Los datos intorducidos no son válidos" , HttpStatus.BAD_REQUEST);
+		}else {
+				return new ResponseEntity<String>("La pelicula con id "+item.getFilmId()+" ya existe", HttpStatus.BAD_REQUEST);
 		}	
 	}
 	

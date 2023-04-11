@@ -13,13 +13,13 @@ public class ErrorHandlerController {
 
 	@ExceptionHandler(SQLIntegrityConstraintViolationException.class)
 	public ResponseEntity<?> errorForeignKey(SQLIntegrityConstraintViolationException ex) {
-		return new ResponseEntity<String>("Error al eliminar el Objeto, tiene RESTRICT", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>("Error: "+ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 
 	
 	
 	@ExceptionHandler(SQLException.class)
 	public ResponseEntity<?> errorForeignKey(SQLException ex) {
-		return new ResponseEntity<String>("Error al insertar rating", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>("Error: "+ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 }

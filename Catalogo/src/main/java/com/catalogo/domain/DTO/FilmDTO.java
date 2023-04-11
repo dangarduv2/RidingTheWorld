@@ -13,6 +13,7 @@ import lombok.Value;
 
 import com.catalogo.domain.Language;
 import com.catalogo.IServices.ILanguageService;
+import com.catalogo.ServicesImpl.Rating;
 import com.catalogo.domain.Film;
 
 
@@ -32,13 +33,13 @@ public class FilmDTO  {
 	//Permite nulo
 	private Integer length;
 
-	//Permite nulo
+	@Rating
 	private String rating;
 
 	//Permite nulo
 	private Integer releaseYear;
 
-	@NotNull
+	@NotNull()
 	private Integer rentalDuration;
 	
 	@NotNull
