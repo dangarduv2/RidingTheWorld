@@ -1,0 +1,757 @@
+{
+	"info": {
+		"_postman_id": "e00ba94c-1dad-4ccf-9f98-831538d0505a",
+		"name": "Catalogo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15699939"
+	},
+	"item": [
+		{
+			"name": "Actor",
+			"item": [
+				{
+					"name": "GetActorById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/catalogo/actor/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"actor",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllActoresByPages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/catalogo/actor/page/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"actor",
+								"page",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteActor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/catalogo/actor/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"actor",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateActor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "actorId",
+									"value": "1000",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "Daniel",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "García",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/catalogo/actor/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"actor",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateActor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "actorId",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "firstName",
+									"value": "Daniel",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "García",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/catalogo/actor/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"actor",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Languages",
+			"item": [
+				{
+					"name": "GetLanguageById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/catalogo/language/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"language",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllLanguagesByPages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/catalogo/language/page/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"language",
+								"page",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteLanguage",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/catalogo/language/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"language",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateLanguage",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "languageId",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "British",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "García",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/catalogo/language/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"language",
+								""
+							],
+							"query": [
+								{
+									"key": "languageId",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "British",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateLanguage",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "languageId",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Vermudu",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "García",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/catalogo/language/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"language",
+								""
+							],
+							"query": [
+								{
+									"key": "languageId",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categorias",
+			"item": [
+				{
+					"name": "GetCategoriasById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/catalogo/categoria/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"categoria",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllCategoriasByPages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/catalogo/categoria/page/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"categoria",
+								"page",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCategoria",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/catalogo/categoria/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"categoria",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCategoria",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "categoryId",
+									"value": "40",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "British",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "García",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/catalogo/categoria/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"categoria",
+								""
+							],
+							"query": [
+								{
+									"key": "languageId",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "British",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCategoria",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "categoryId",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Mazoca",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "García",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/catalogo/categoria/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"categoria",
+								""
+							],
+							"query": [
+								{
+									"key": "languageId",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Film",
+			"item": [
+				{
+					"name": "GetFilmById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/catalogo/pelicula/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"pelicula",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllFilmsByPages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/catalogo/pelicula/page/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"pelicula",
+								"page",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateFilm",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "filmId",
+									"value": "1050",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Sangre",
+									"description": "Opcional",
+									"type": "text"
+								},
+								{
+									"key": "length",
+									"value": "180",
+									"description": "Opcional",
+									"type": "text"
+								},
+								{
+									"key": "rating",
+									"value": "G",
+									"type": "text"
+								},
+								{
+									"key": "releaseYear",
+									"value": "2004",
+									"description": "Opcional",
+									"type": "text"
+								},
+								{
+									"key": "rentalDuration",
+									"value": "15",
+									"type": "text"
+								},
+								{
+									"key": "rentalRate",
+									"value": "0.9",
+									"type": "text"
+								},
+								{
+									"key": "replacementCost",
+									"value": "0.9",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Soul",
+									"type": "text"
+								},
+								{
+									"key": "language1",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "language2",
+									"value": "6",
+									"description": "Opcional",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/catalogo/pelicula/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"pelicula",
+								""
+							],
+							"query": [
+								{
+									"key": "languageId",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "British",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateFilm",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "filmId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Sangre",
+									"description": "Opcional",
+									"type": "text"
+								},
+								{
+									"key": "length",
+									"value": "180",
+									"description": "Opcional",
+									"type": "text"
+								},
+								{
+									"key": "rating",
+									"value": "G",
+									"type": "text"
+								},
+								{
+									"key": "releaseYear",
+									"value": "2004",
+									"description": "Opcional",
+									"type": "text"
+								},
+								{
+									"key": "rentalDuration",
+									"value": "15",
+									"type": "text"
+								},
+								{
+									"key": "rentalRate",
+									"value": "0.9",
+									"type": "text"
+								},
+								{
+									"key": "replacementCost",
+									"value": "0.9",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Soul",
+									"type": "text"
+								},
+								{
+									"key": "language1",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "language2",
+									"value": "6",
+									"description": "Opcional",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8081/catalogo/pelicula/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"catalogo",
+								"pelicula",
+								""
+							],
+							"query": [
+								{
+									"key": "languageId",
+									"value": "100",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "British",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
