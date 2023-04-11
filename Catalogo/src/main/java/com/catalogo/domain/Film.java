@@ -2,6 +2,9 @@ package com.catalogo.domain;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
@@ -14,43 +17,55 @@ public class Film implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="film_id", unique=true, nullable=false)
+	@NotNull
 	private int filmId;
 
 	@Lob
+	//Permite nulo
 	private String description;
 
 	@Column(name="last_update", nullable=true)
+	@NotNull
 	private Timestamp lastUpdate;
 
+	//Permite nulo
 	private int length;
 
 	@Column(length=2)
+	//Permite nulo
 	private String rating;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="release_year", nullable=true)
+	//Permite nulo
 	private int releaseYear;
 
 	@Column(name="rental_duration", nullable=false)
+	@NotNull
 	private Integer rentalDuration;
 
 	@Column(name="rental_rate", nullable=false, precision=10, scale=2)
+	@NotNull
 	private BigDecimal rentalRate;
 
 	@Column(name="replacement_cost", nullable=false, precision=10, scale=2)
+	@NotNull
 	private BigDecimal replacementCost;
 
 	@Column(nullable=false, length=128)
+	@NotBlank
 	private String title;
 
 	
 	@ManyToOne
 	@JoinColumn(name="language_id", nullable=true)
+	@NotNull
 	private Language language1;
 
 	
 	@ManyToOne
 	@JoinColumn(name="original_language_id", nullable=true)
+	//Permite nulo
 	private Language language2;
 
 	

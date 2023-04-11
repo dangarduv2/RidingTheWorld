@@ -24,16 +24,16 @@ public class FilmDTO  {
 	@NotNull
 	private int filmId;
 
-	@NotBlank
+	//Permite nulo
 	private String description;
 
-	@NotNull
+	//Permite nulo
 	private int length;
 
-	@NotBlank
+	//Permite nulo
 	private String rating;
 
-	@NotNull
+	//Permite nulo
 	private Integer releaseYear;
 
 	@NotNull
@@ -48,10 +48,10 @@ public class FilmDTO  {
 	@NotBlank
 	private String title;
 
-	
+	@NotNull
 	private Integer language1;
 
-	
+	//Permite nulo	
 	private Integer language2;
 
 
