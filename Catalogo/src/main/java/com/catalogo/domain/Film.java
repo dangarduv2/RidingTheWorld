@@ -3,7 +3,6 @@ package com.catalogo.domain;
 import java.io.Serializable;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -33,16 +32,13 @@ public class Film implements Serializable {
 	private int releaseYear;
 
 	@Column(name="rental_duration", nullable=false)
-	private byte rentalDuration;
+	private Integer rentalDuration;
 
 	@Column(name="rental_rate", nullable=false, precision=10, scale=2)
 	private BigDecimal rentalRate;
 
 	@Column(name="replacement_cost", nullable=false, precision=10, scale=2)
 	private BigDecimal replacementCost;
-
-	@Column(name="special_features")
-	private String specialFeatures;
 
 	@Column(nullable=false, length=128)
 	private String title;
@@ -71,24 +67,24 @@ public class Film implements Serializable {
 	
 	
 	public Film(int filmId, String description, int length, String rating, int releaseYear,
-			String specialFeatures, String title, Language language1, Language language2, Timestamp lastUpdate) {
+			Integer rentalDuration,BigDecimal rentalRate,BigDecimal replacementCost,
+		 String title, Language language1, Language language2, Timestamp lastUpdate) {
 
 		this.filmId = filmId;
 		this.description = description;
 		this.length = length;
 		this.rating = rating;
 		this.releaseYear = releaseYear;
-		this.specialFeatures = specialFeatures;
+		this.rentalDuration=rentalDuration;
+		this.rentalRate=rentalRate;
+		this.replacementCost=replacementCost;
+
 		this.title = title;
 		this.language1 = language1;
 		this.language2 = language2;
 		this.lastUpdate= lastUpdate;
 	}
-
-
 	
-
-
 	public int getFilmId() {
 		return this.filmId;
 	}
@@ -137,11 +133,11 @@ public class Film implements Serializable {
 		this.releaseYear = releaseYear;
 	}
 
-	public byte getRentalDuration() {
+	public Integer getRentalDuration() {
 		return this.rentalDuration;
 	}
 
-	public void setRentalDuration(byte rentalDuration) {
+	public void setRentalDuration(Integer rentalDuration) {
 		this.rentalDuration = rentalDuration;
 	}
 
@@ -159,14 +155,6 @@ public class Film implements Serializable {
 
 	public void setReplacementCost(BigDecimal replacementCost) {
 		this.replacementCost = replacementCost;
-	}
-
-	public String getSpecialFeatures() {
-		return this.specialFeatures;
-	}
-
-	public void setSpecialFeatures(String specialFeatures) {
-		this.specialFeatures = specialFeatures;
 	}
 
 	public String getTitle() {

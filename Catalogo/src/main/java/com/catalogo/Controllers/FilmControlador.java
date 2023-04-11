@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.catalogo.DAO.FilmDAO;
 import com.catalogo.IServices.ICategoryService;
 import com.catalogo.IServices.IFilmService;
+import com.catalogo.IServices.ILanguageService;
 import com.catalogo.domain.Category;
 import com.catalogo.domain.Film;
 import com.catalogo.domain.DTO.CategoryDTO;
@@ -33,6 +35,9 @@ public class FilmControlador {
 	
 	@Autowired
 	IFilmService fs;
+	
+	@Autowired
+	ILanguageService ls;
 	
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<?> getFilmById(@PathVariable Optional<Integer> id) {
@@ -90,13 +95,28 @@ public class FilmControlador {
 	public ResponseEntity<?> update(@Valid FilmDTO item,BindingResult result){
 		
 		if(!result.hasErrors() && (fs.getById(item.getFilmId()) != null )) {
-			fs.update(FilmDTO.from(item));
+			fs.update(FilmDTO.from(item,ls));
 			return new ResponseEntity<FilmDTO>(item, HttpStatus.OK);
 		}else if(result.hasErrors()) {
 			return new ResponseEntity<String>("Los datos intorducidos no son válidos" , HttpStatus.BAD_REQUEST);
 		}else {
 				return new ResponseEntity<String>("La pelicula con id "+item.getFilmId()+" no existe", HttpStatus.BAD_REQUEST);
 		}	
+	}
+	
+	
+	@PutMapping("/33")
+	public ResponseEntity<?> updates(@Valid FilmDTO item,BindingResult result){
+		
+		System.out.println(item.getLanguage1());
+		System.out.println(item.getLanguage2());
+		
+		Film filma = FilmDTO.from(item,ls);
+		System.out.println(filma.getLanguage1().getLanguageId());
+		System.out.println(filma.getLanguage2().getLanguageId());
+		
+		
+		return new ResponseEntity<String>("La pelicula con id "+item.getFilmId()+" no existe", HttpStatus.BAD_REQUEST);
 	}
 
 }

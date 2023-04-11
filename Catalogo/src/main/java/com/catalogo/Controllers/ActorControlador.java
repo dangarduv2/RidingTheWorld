@@ -94,7 +94,7 @@ public class ActorControlador {
 
 		if (!result.hasErrors() && (as.getById(item.getActorId()) == null)) {
 			as.create(ActorDTO.from(item));
-			return new ResponseEntity<ActorDTO>(item, HttpStatus.OK);
+			return new ResponseEntity<String>("Actor creado con exito", HttpStatus.OK);
 		} else if (result.hasErrors()) {
 			return new ResponseEntity<String>("Los datos intorducidos no son válidos", HttpStatus.BAD_REQUEST);
 		} else {
@@ -103,13 +103,5 @@ public class ActorControlador {
 		}
 	}
 	
-
-	@InitBinder
-	public void initBinder(WebDataBinder binder) {
-
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-		dateFormat.setLenient(false);
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-	}
 
 }
