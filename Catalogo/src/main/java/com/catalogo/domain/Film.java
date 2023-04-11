@@ -53,13 +53,13 @@ public class Film implements Serializable {
 	private BigDecimal replacementCost;
 
 	@Column(nullable=false, length=128)
-	@NotBlank
+	//@NotBlank
 	private String title;
 
 	
 	@ManyToOne
 	@JoinColumn(name="language_id", nullable=true)
-	@NotNull
+	//@NotNull
 	private Language language1;
 
 	
@@ -81,22 +81,28 @@ public class Film implements Serializable {
 
 	
 	
-	public Film(int filmId, String description, int length, String rating, int releaseYear,
+	public Film(int filmId, String description, Integer length, String rating, Integer releaseYear,
 			Integer rentalDuration,BigDecimal rentalRate,BigDecimal replacementCost,
 		 String title, Language language1, Language language2, Timestamp lastUpdate) {
 
+		 Language lan2= (language2!=null) ? language2: null;
+		 String descriptionv= (description!=null)? description: null;
+		 Integer lengthv= (length!=null)? length: null;
+		 String ratingv= (rating!=null)? rating: null;
+		 Integer releaseYearv= (releaseYear!=null)? releaseYear: null; 
+		
 		this.filmId = filmId;
-		this.description = description;
-		this.length = null;
-		this.rating = rating;
-		this.releaseYear = releaseYear;
+		this.description = descriptionv;
+		this.length = lengthv;
+		this.rating = ratingv;
+		this.releaseYear = releaseYearv;
 		this.rentalDuration=rentalDuration;
 		this.rentalRate=rentalRate;
 		this.replacementCost=replacementCost;
 
 		this.title = title;
 		this.language1 = language1;
-		this.language2 = language2;
+		this.language2 = lan2;
 		this.lastUpdate= lastUpdate;
 	}
 	

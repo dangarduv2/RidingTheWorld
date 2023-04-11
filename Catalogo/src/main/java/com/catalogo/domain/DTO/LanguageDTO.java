@@ -1,17 +1,13 @@
 package com.catalogo.domain.DTO;
 
-import java.io.Serializable;
-import jakarta.persistence.*;
+
 import lombok.Value;
 
 import java.sql.Timestamp;
-import java.util.List;
 
-import com.catalogo.domain.Film;
 import com.catalogo.domain.Language;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-
+	
 @Value
 public class LanguageDTO {
 

@@ -1,17 +1,12 @@
 package com.catalogo.domain.DTO;
 
-import java.io.Serializable;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Value;
 
 import java.sql.Timestamp;
-import java.util.List;
-
-import com.catalogo.domain.Actor;
 import com.catalogo.domain.Category;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 
 @Value

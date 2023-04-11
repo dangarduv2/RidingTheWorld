@@ -23,6 +23,7 @@ import com.catalogo.IServices.IFilmService;
 import com.catalogo.IServices.ILanguageService;
 import com.catalogo.domain.Category;
 import com.catalogo.domain.Film;
+import com.catalogo.domain.Language;
 import com.catalogo.domain.DTO.CategoryDTO;
 import com.catalogo.domain.DTO.FilmDTO;
 
@@ -76,19 +77,27 @@ public class FilmControlador {
 
 	
 	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable Optional<Integer> id) throws SQLIntegrityConstraintViolationException {
-		if (id.isPresent()) {
-			if (fs.getById(id.get()) != null) {
-				fs.delete(id.get());
-				return new ResponseEntity<String>("Pelicula con id: " + id.get() + " eliminado", HttpStatus.OK);
-			}
-
-		}
-		return new ResponseEntity<String>("La pelicula con tal ID no existe", HttpStatus.NOT_FOUND);
-	}
 	
 	
+//	@DeleteMapping("/{id}")
+//	public ResponseEntity<?> delete(@PathVariable Optional<Integer> id)throws SQLIntegrityConstraintViolationException{
+//		List<FilmActor>
+//		Film filmer = null;
+//		if (id.isPresent()) {
+//			filmer =(fs.getById(id.get()));
+//			if (filmer != null) {
+//				filmer.setTitle("ss");
+//				Language lengeli = ls.getById(7);
+//				filmer.setLanguage1(lengeli);
+//				filmer.setLanguage2(null);
+//				fs.update(filmer);
+//				fs.delete(id.get());
+//				return new ResponseEntity<String>("Pelicula con id: " + id.get() + " eliminado", HttpStatus.OK);
+//			}
+//
+//		}
+//		return new ResponseEntity<String>("La pelicula con tal ID no existe", HttpStatus.NOT_FOUND);
+//	}
 	
 	
 	@PutMapping("/")
@@ -109,19 +118,8 @@ public class FilmControlador {
 	}
 	
 	
-	@PutMapping("/33")
-	public ResponseEntity<?> updates(@Valid FilmDTO item,BindingResult result){
-		
-		System.out.println(item.getLanguage1());
-		System.out.println(item.getLanguage2());
-		
-		Film filma = FilmDTO.from(item,ls);
-		System.out.println(filma.getLanguage1().getLanguageId());
-		System.out.println(filma.getLanguage2().getLanguageId());
-		
-		
-		return new ResponseEntity<String>("La pelicula con id "+item.getFilmId()+" no existe", HttpStatus.BAD_REQUEST);
-	}
+	
+
 
 }
 
