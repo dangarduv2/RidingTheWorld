@@ -2,12 +2,14 @@ package com.catalogo.domain.DTO;
 
 
 import java.math.BigDecimal;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.List;
 
 import lombok.Value;
 
 
-import org.hibernate.validator.constraints.Length;
 
 import com.catalogo.domain.Language;
 import com.catalogo.IServices.ILanguageService;
@@ -21,14 +23,14 @@ import jakarta.validation.constraints.NotNull;
 public class FilmDTO  {
 
 
-	@NotNull
+	@NotNull			
 	private int filmId;
 
 	//Permite nulo
 	private String description;
 
 	//Permite nulo
-	private int length;
+	private Integer length;
 
 	//Permite nulo
 	private String rating;
@@ -53,47 +55,52 @@ public class FilmDTO  {
 
 	//Permite nulo	
 	private Integer language2;
-
-
 	
 	
 	public static FilmDTO from(Film target) {
-		Integer lan1=null;
-		Integer lan2=null;
-		if(target.getLanguage1()!=null)lan1=target.getLanguage1().getLanguageId();
-		if(target.getLanguage2()!=null)lan2=target.getLanguage2().getLanguageId();
+		
+		 Integer lan2= (target.getLanguage2()!=null) ? target.getLanguage2().getLanguageId(): 0;
+		 String descriptionv= (target.getDescription()!=null)? target.getDescription(): null;
+		 Integer lengthv= (target.getLength()!=null)? target.getLength(): 0;
+		 String ratingv= (target.getRating()!=null)? target.getRating(): null;
+		 Integer releaseYearv= (target.getReleaseYear()!=null)? target.getReleaseYear(): 0;
+		
 		return new FilmDTO(
 				target.getFilmId(),
-				target.getDescription(),
-				target.getLength(),
-				target.getRating(),
-				target.getReleaseYear(),
+				descriptionv,
+				lengthv,
+				ratingv,
+				releaseYearv,
 				target.getRentalDuration(),
 				target.getRentalRate(),
 				target.getReplacementCost(),
 				target.getTitle(),
-				lan1,
+				target.getLanguage1().getLanguageId(),
 				lan2
 );
 	}
 	
 	public static Film from(FilmDTO target, ILanguageService servicio) {
-		Language lan1 =servicio.getById(target.getLanguage1());
-		Language lan2 =servicio.getById(target.getLanguage2());
-		if(lan1.getLanguageId()==null)lan1=null;
-		if(lan2.getLanguageId()==null)lan2=null;
+
+		Language lan2 =(target.getLanguage2()!=null) ? servicio.getById(target.getLanguage2()):null;
+		 String descriptionv= (target.getDescription()!=null)? target.getDescription(): null;
+		 Integer lengthv= (target.getLength()!=null)? target.getLength(): 0;
+		 String ratingv= (target.getRating()!=null)? target.getRating(): null;
+		 Integer releaseYearv= (target.getReleaseYear()!=null)? target.getReleaseYear(): 0;
+
+
+		
 		return new Film(
 				target.getFilmId(),
-				target.getDescription(),
-				target.getLength(),
-				target.getRating(),
-				target.getReleaseYear(),
+				descriptionv,
+				lengthv,
+				ratingv,
+				releaseYearv,
 				target.getRentalDuration(),
 				target.getRentalRate(),
 				target.getReplacementCost(),
 				target.getTitle(),
-				
-				lan1,
+				servicio.getById(target.getLanguage1()),
 				lan2,
 				new Timestamp(System.currentTimeMillis())
 		);

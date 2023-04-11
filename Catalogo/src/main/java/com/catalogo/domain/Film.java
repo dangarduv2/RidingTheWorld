@@ -29,7 +29,7 @@ public class Film implements Serializable {
 	private Timestamp lastUpdate;
 
 	//Permite nulo
-	private int length;
+	private Integer length;
 
 	@Column(length=2)
 	//Permite nulo
@@ -87,7 +87,7 @@ public class Film implements Serializable {
 
 		this.filmId = filmId;
 		this.description = description;
-		this.length = length;
+		this.length = null;
 		this.rating = rating;
 		this.releaseYear = releaseYear;
 		this.rentalDuration=rentalDuration;
@@ -124,7 +124,7 @@ public class Film implements Serializable {
 		this.lastUpdate = lastUpdate;
 	}
 
-	public int getLength() {
+	public Integer getLength() {
 		return this.length;
 	}
 
@@ -140,7 +140,7 @@ public class Film implements Serializable {
 		this.rating = rating;
 	}
 
-	public int getReleaseYear() {
+	public Integer getReleaseYear() {
 		return this.releaseYear;
 	}
 

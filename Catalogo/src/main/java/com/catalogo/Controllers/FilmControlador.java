@@ -98,6 +98,10 @@ public class FilmControlador {
 			fs.update(FilmDTO.from(item,ls));
 			return new ResponseEntity<FilmDTO>(item, HttpStatus.OK);
 		}else if(result.hasErrors()) {
+			List<ObjectError> erro = result.getAllErrors();
+			for(ObjectError ee: erro) {
+				System.out.println(ee.toString());
+			}
 			return new ResponseEntity<String>("Los datos intorducidos no son válidos" , HttpStatus.BAD_REQUEST);
 		}else {
 				return new ResponseEntity<String>("La pelicula con id "+item.getFilmId()+" no existe", HttpStatus.BAD_REQUEST);

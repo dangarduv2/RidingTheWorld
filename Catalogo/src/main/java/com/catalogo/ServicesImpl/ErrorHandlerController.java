@@ -1,5 +1,6 @@
 package com.catalogo.ServicesImpl;
 
+import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
 import org.springframework.http.HttpStatus;
@@ -15,4 +16,10 @@ public class ErrorHandlerController {
 		return new ResponseEntity<String>("Error al eliminar el Objeto, tiene RESTRICT", HttpStatus.NOT_FOUND);
 	}
 
+	
+	
+	@ExceptionHandler(SQLException.class)
+	public ResponseEntity<?> errorForeignKey(SQLException ex) {
+		return new ResponseEntity<String>("Error al insertar rating", HttpStatus.NOT_FOUND);
+	}
 }
