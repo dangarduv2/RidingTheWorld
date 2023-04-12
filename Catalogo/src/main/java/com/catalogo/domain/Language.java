@@ -47,15 +47,6 @@ public class Language implements Serializable {
 	}
 	
 
-	public Language(Integer languageId, String name, List<Film> films1, List<Film> films2) {
-		super();
-		this.languageId = languageId;
-		this.name = name;
-		this.films1 = films1;
-		this.films2 = films2;
-	}
-
-
 
 	public Integer getLanguageId() {
 		return this.languageId;

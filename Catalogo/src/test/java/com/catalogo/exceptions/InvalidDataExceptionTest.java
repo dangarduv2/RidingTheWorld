@@ -15,13 +15,21 @@ class InvalidDataExceptionTest {
 	}
 	
 	@Test
-	void NotFoundException1() {
+	void PruebaInvalidDataException1() {
 		assertThrows(InvalidDataException.class, ()-> {probando.PruebaInvalidDataException(1);});
 	}
 	
 	@Test
-	void NotFoundException2() {
+	void PruebaInvalidDataException2() {
 		assertThrows(InvalidDataException.class, ()-> {probando.PruebaInvalidDataException(2);});
+	}
+	
+	@Test
+	void PruebaInvalidDataException3() throws InvalidDataException {
+		Boolean bandera = false;
+		probando.PruebaInvalidDataException(3);
+		 bandera = true;
+		 assertTrue(bandera);
 	}
 
 }

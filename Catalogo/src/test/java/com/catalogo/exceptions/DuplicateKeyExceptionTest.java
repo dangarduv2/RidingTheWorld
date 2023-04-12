@@ -15,13 +15,21 @@ ProbandoExcepciones probando;
 	}
 	
 	@Test
-	void NotFoundException1() {
+	void DuplicateKeyException1() {
 		assertThrows(DuplicateKeyException.class, ()-> {probando.PruebaDuplicateKeyException(1);});
 	}
 	
 	@Test
-	void NotFoundException2() {
+	void DuplicateKeyException2() {
 		assertThrows(DuplicateKeyException.class, ()-> {probando.PruebaDuplicateKeyException(2);});
+	}
+	
+	@Test
+	void DuplicateKeyException3() throws DuplicateKeyException {
+		Boolean bandera = false;
+		probando.PruebaDuplicateKeyException(3);
+		bandera = true;
+		assertTrue(bandera);
 	}
 
 }

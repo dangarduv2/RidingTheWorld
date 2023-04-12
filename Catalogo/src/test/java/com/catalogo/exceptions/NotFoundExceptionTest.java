@@ -22,5 +22,13 @@ class NotFoundExceptionTest {
 	void NotFoundException2() {
 		assertThrows(NotFoundException.class, ()-> {probando.PruebaNotFoundException(2);});
 	}
+	
+	@Test
+	void NotFoundException3() throws NotFoundException {
+		Boolean bandera = false;
+		probando.PruebaNotFoundException(3);
+		bandera = true;
+		assertTrue(bandera);
+	}
 
 }

@@ -15,13 +15,22 @@ ProbandoExcepciones probando;
 	}
 	
 	@Test
-	void NotFoundException1() {
+	void BadRequestException1() {
 		assertThrows(BadRequestException.class, ()-> {probando.PruebaBadRequestException(1);});
 	}
 	
 	@Test
-	void NotFoundException2() {
+	void BadRequestException2() {
 		assertThrows(BadRequestException.class, ()-> {probando.PruebaBadRequestException(2);});
+	}
+	
+	@Test
+	void BadRequestException3() throws BadRequestException {
+		Boolean bandera = false;
+		probando.PruebaBadRequestException(3);
+		bandera = true;
+		assertTrue(bandera);
+		
 	}
 
 }
