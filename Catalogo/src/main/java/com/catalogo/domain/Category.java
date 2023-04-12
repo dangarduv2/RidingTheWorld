@@ -40,13 +40,6 @@ public class Category implements Serializable {
 	public Category() {
 	}
 
-	
-	
-	public Category(int categoryId, String name) {
-		this.categoryId = categoryId;
-		this.name = name;
-	}
-	
 	public Category(int categoryId, String name, Timestamp lastUpdate) {
 		this.categoryId = categoryId;
 		this.name = name;
@@ -59,7 +52,7 @@ public class Category implements Serializable {
 		return this.categoryId;
 	}
 
-	public void setCategoryId(byte categoryId) {
+	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
 	}
 
