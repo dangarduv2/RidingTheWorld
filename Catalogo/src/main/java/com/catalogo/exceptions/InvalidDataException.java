@@ -11,16 +11,4 @@ public class InvalidDataException extends Exception {
 		super(message);
 	}
 
-	public InvalidDataException(Throwable cause) {
-		this(MESSAGE_STRING, cause);
-	}
-
-	public InvalidDataException(String message, Throwable cause) {
-		super(message, cause);
-	}
-
-	public InvalidDataException(String message, Throwable cause, boolean enableSuppression,
-			boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-	}
 }

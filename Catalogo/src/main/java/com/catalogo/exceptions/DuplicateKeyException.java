@@ -12,17 +12,4 @@ public class DuplicateKeyException extends Exception {
 		super(message);
 	}
 
-	public DuplicateKeyException(Throwable cause) {
-		this(MESSAGE_STRING, cause);
-	}
-
-	public DuplicateKeyException(String message, Throwable cause) {
-		super(message, cause);
-	}
-
-	public DuplicateKeyException(String message, Throwable cause, boolean enableSuppression,
-			boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-	}
-
 }
