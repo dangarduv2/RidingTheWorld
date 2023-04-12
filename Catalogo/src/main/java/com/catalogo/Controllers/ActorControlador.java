@@ -10,6 +10,7 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -82,6 +83,10 @@ public class ActorControlador {
 			as.update(ActorDTO.from(item));
 			return new ResponseEntity<ActorDTO>(item, HttpStatus.OK);
 		} else if (result.hasErrors()) {
+			List<ObjectError> lista = result.getAllErrors();
+			for(ObjectError er:lista) {
+			System.out.println(er.toString());
+			}
 			return new ResponseEntity<String>("Los datos intorducidos no son válidos", HttpStatus.BAD_REQUEST);
 		} else {
 			return new ResponseEntity<String>("El usuario con id " + item.getActorId() + " no existe",
