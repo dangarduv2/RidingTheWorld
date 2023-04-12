@@ -15,3 +15,6 @@ Para poder ejecutar los tests con seguiridad se recomienda:
 	- Crear una nueva BBDD para no maltratar la original
 	- Ejecutar el script sql **CADA VEZ QUE VAYAS A HACER UN TEST** que he dejado dentro de  
 	   \Catalogo\src\main\resources\scriptSQLtests.txt
+	   
+# Resultados tests
+![tests](Catalogo/src/main/resources/img/Por.png)
