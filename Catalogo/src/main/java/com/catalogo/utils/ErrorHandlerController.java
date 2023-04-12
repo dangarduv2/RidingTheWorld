@@ -1,4 +1,4 @@
-package com.catalogo.ServicesImpl;
+package com.catalogo.utils;
 
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
@@ -13,13 +13,13 @@ public class ErrorHandlerController {
 
 	@ExceptionHandler(SQLIntegrityConstraintViolationException.class)
 	public ResponseEntity<?> errorForeignKey(SQLIntegrityConstraintViolationException ex) {
-		return new ResponseEntity<String>("Error: "+ex.getMessage(), HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>("Error SQLIntegrity: "+ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 
 	
 	
 	@ExceptionHandler(SQLException.class)
 	public ResponseEntity<?> errorForeignKey(SQLException ex) {
-		return new ResponseEntity<String>("Error: "+ex.getMessage(), HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>("Error EXCEPCION: "+ex.getMessage(), HttpStatus.NOT_FOUND);
 	}
 }

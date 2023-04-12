@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.catalogo.DAO.FilmDAO;
 import com.catalogo.IServices.IFilmService;
-import com.catalogo.domain.Actor;
-import com.catalogo.domain.Category;
 import com.catalogo.domain.Film;
 @Service("FilmServiceImpl")
 public class FilmServiceImpl implements IFilmService{
@@ -30,7 +28,7 @@ public class FilmServiceImpl implements IFilmService{
 	}
 
 	@Override
-	public void delete(Integer id) {
+	public void delete(Integer id){
 		fd.deleteById(id);
 	}
 

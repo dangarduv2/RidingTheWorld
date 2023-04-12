@@ -1,4 +1,4 @@
-package com.catalogo.ServicesImpl;
+package com.catalogo.utils;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

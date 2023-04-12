@@ -1,5 +1,9 @@
-
-drop database IF  EXISTS sakila;
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Versión del servidor:         8.0.29 - MySQL Community Server - GPL
+-- SO del servidor:              Linux
+-- HeidiSQL Versión:             12.4.0.6659
+-- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
@@ -12,6 +16,7 @@ drop database IF  EXISTS sakila;
 
 
 -- Volcando estructura de base de datos para sakila
+DROP DATABASE IF EXISTS `sakila`;
 CREATE DATABASE IF NOT EXISTS `sakila` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `sakila`;
 
@@ -20,12 +25,12 @@ CREATE TABLE IF NOT EXISTS `actor` (
   `actor_id` smallint unsigned NOT NULL AUTO_INCREMENT,
   `first_name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
-  `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`actor_id`),
   KEY `idx_actor_last_name` (`last_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla sakila.actor: ~13 rows (aproximadamente)
+-- Volcando datos para la tabla sakila.actor: ~11 rows (aproximadamente)
 INSERT INTO `actor` (`actor_id`, `first_name`, `last_name`, `last_update`) VALUES
 	(1, 'PENELOPE', 'GUINESS', '2006-02-15 04:34:33'),
 	(2, 'NICK', 'WAHLBERG', '2006-02-15 04:34:33'),
@@ -864,7 +869,7 @@ INSERT INTO `address` (`address_id`, `address`, `address2`, `district`, `city_id
 CREATE TABLE IF NOT EXISTS `category` (
   `category_id` tinyint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(25) NOT NULL,
-  `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`category_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

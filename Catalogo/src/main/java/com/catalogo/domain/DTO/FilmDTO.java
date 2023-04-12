@@ -12,8 +12,8 @@ import lombok.Value;
 
 
 import com.catalogo.domain.Language;
+import com.catalogo.utils.Rating;
 import com.catalogo.IServices.ILanguageService;
-import com.catalogo.ServicesImpl.Rating;
 import com.catalogo.domain.Film;
 
 
