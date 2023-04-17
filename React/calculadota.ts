@@ -2,13 +2,16 @@
 var numero :number;
 var numeroAuxiliar :number =0;
 var numeroResultado :number=0;
-var ultimo :String;
+var ultimo :String ="";
 
 
 function boton(valor:number) {
     var visor:(HTMLElement|null)  = document.getElementById("visor");
     var inputValue = (<HTMLInputElement>document.getElementById("visor")).value;
 
+    if(ultimo=="d"){
+        numeroAuxiliar = numeroAuxiliar/parseInt(inputValue);
+    }
 
     if(ultimo!="i"){
         if(inputValue=="0"){
@@ -72,6 +75,30 @@ function btn_resta() {
      imprimir();
 }
 
+function btn_divide() {
+    var visor:(HTMLElement|null)  = document.getElementById("visor");
+    var m = (<HTMLInputElement>document.getElementById("visor")).value;
+
+    if(m!="" && ultimo!="i"){
+        if(!(numeroAuxiliar==0)){
+            numeroAuxiliar= numeroAuxiliar/parseInt(m);
+        }    
+    }
+    
+
+    numero=0;
+    if(numeroAuxiliar!=0){
+        visor!.setAttribute('value', "");
+
+    }else{
+        visor!.setAttribute('value', String(numeroAuxiliar));
+    }
+
+     ultimo ="d";
+
+     imprimir();
+}
+
 
 function btn_igual() {
     var visor:(HTMLElement|null)  = document.getElementById("visor");
@@ -81,6 +108,7 @@ function btn_igual() {
     switch(ultimo){
         case "s": numeroAuxiliar= numeroAuxiliar+parseInt(m); break;
         case "r": numeroAuxiliar= numeroAuxiliar-parseInt(m); break;
+        case "d": numeroAuxiliar= numeroAuxiliar/parseInt(m); break;
     }
 }
     visor!.setAttribute('value', String(numeroAuxiliar));
