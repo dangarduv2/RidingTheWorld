@@ -5,9 +5,6 @@ var ultimo = "";
 function boton(valor) {
     var visor = document.getElementById("visor");
     var inputValue = document.getElementById("visor").value;
-    if (ultimo == "d") {
-        numeroAuxiliar = numeroAuxiliar / parseInt(inputValue);
-    }
     if (ultimo != "i") {
         if (inputValue == "0") {
             visor.setAttribute('value', String(valor));
@@ -24,7 +21,14 @@ function btn_suma() {
     var visor = document.getElementById("visor");
     var m = document.getElementById("visor").value;
     if (m != "" && ultimo != "i") {
-        numeroAuxiliar = numeroAuxiliar + parseInt(m);
+        if (ultimo == "d") {
+            numeroAuxiliar = numeroAuxiliar / parseInt(m);
+        }
+        else if (ultimo == "d") {
+        }
+        else {
+            numeroAuxiliar = numeroAuxiliar + parseInt(m);
+        }
     }
     numero = 0;
     if (numeroAuxiliar != 0) {
@@ -49,16 +53,39 @@ function btn_resta() {
     else {
         visor.setAttribute('value', String(numeroAuxiliar));
     }
+    if (ultimo == "d") {
+        numeroAuxiliar = numeroAuxiliar / parseInt(m);
+    }
     ultimo = "r";
+    imprimir();
+}
+function btn_multiplica() {
+    var visor = document.getElementById("visor");
+    var m = document.getElementById("visor").value;
+    if (m != "" && ultimo != "i") {
+        numeroAuxiliar = numeroAuxiliar * parseInt(m);
+    }
+    if (numero != 0 && numeroAuxiliar == 0) {
+        numeroAuxiliar = numero;
+    }
+    numero = 0;
+    if (numeroAuxiliar != 0) {
+        visor.setAttribute('value', "");
+    }
+    else {
+        visor.setAttribute('value', String(numeroAuxiliar));
+    }
+    ultimo = "m";
     imprimir();
 }
 function btn_divide() {
     var visor = document.getElementById("visor");
     var m = document.getElementById("visor").value;
     if (m != "" && ultimo != "i") {
-        if (!(numeroAuxiliar == 0)) {
-            numeroAuxiliar = numeroAuxiliar / parseInt(m);
-        }
+        numeroAuxiliar = numeroAuxiliar / parseInt(m);
+    }
+    if (numero != 0 && numeroAuxiliar == 0) {
+        numeroAuxiliar = numero;
     }
     numero = 0;
     if (numeroAuxiliar != 0) {
@@ -83,6 +110,9 @@ function btn_igual() {
                 break;
             case "d":
                 numeroAuxiliar = numeroAuxiliar / parseInt(m);
+                break;
+            case "m":
+                numeroAuxiliar = numeroAuxiliar * parseInt(m);
                 break;
         }
     }
