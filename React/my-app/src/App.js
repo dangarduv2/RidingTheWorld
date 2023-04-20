@@ -6,6 +6,7 @@ import React, { Component, useState } from 'react'
 import { Card, Contador } from './componentes';
 import { ErrorBoundary } from './biblioteca/comunes.js';
 import Muro from './galeria/muro';
+import { PadreFormulario } from './formulario/formulario.js';
 
 export class App extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ export class App extends Component {
         displayValue: ''
     }
     this.menu = [
+      { texto: 'fromulario', url: '/fromulario', componente: <PadreFormulario /> },
       { texto: 'muro', url: '/muro', componente: <Muro /> },
       { texto: 'calculadora', url: '/', componente: <Calculator />},
       { texto: 'calculadora2', url: '/2', componente: <Calculator2 />},
@@ -29,9 +31,8 @@ export class App extends Component {
   render() {
     return (
       <>
-       {hula()}
         <Cabecera menu={this.menu} onSelectMenu={indice => this.setState({main: indice})} />
-        <main className='container-fluid'>
+        <main className='container-fluid mt-5 ms-5'>
           <ErrorBoundary>
           {this.menu[this.state.main].componente}
           </ErrorBoundary>
@@ -42,11 +43,6 @@ export class App extends Component {
   }
 }
 
-function hula(){
-  if(false){
-    return <h1>hOOOOOOOOOLA</h1>
-  }
-}
 
 function Cabecera(props) {
   return (
