@@ -3,6 +3,7 @@ import { ValidationMessage, ErrorMessage, Esperando, PaginacionCmd as Paginacion
 import { titleCase } from '../biblioteca/formateadores.js';
 
 
+
 export class ActoresMnt extends Component {
     constructor(props) {
         super(props);
@@ -15,8 +16,13 @@ export class ActoresMnt extends Component {
             pagina: 0,
             paginas: 0
         };
+        this.pagina=this.setPagina();
         this.idOriginal = null;
-        this.url = (process.env.REACT_APP_API_URL || 'http://localhost:8081/') + 'catalogo/actor/page';
+        this.url = (process.env.REACT_APP_API_URL || 'http://localhost:8081/') + 'catalogo/actor';
+    }
+
+    setPagina(){
+        return 0;
     }
 
     setError(msg) {
@@ -27,7 +33,7 @@ export class ActoresMnt extends Component {
         let pagina = this.state.pagina
         if (num || num === 0) pagina = num
         this.setState({ loading: true });
-        fetch(`${this.url}/${pagina}`)
+        fetch(`${this.url}/page/${pagina}`)
             .then(response => {
                 response.json().then(response.ok ? data => {
 
@@ -46,7 +52,7 @@ export class ActoresMnt extends Component {
     add() {
         this.setState({
             modo: "add",
-            elemento: { id: 0, nombre: "", apellidos: "" }
+            elemento: { actorId: 0, firstName: "", lastName: "" }
         });
     }
     edit(key) {
@@ -97,12 +103,12 @@ export class ActoresMnt extends Component {
 
 
     componentDidMount() {
-        this.list(0);
+        this.list(this.setPagina());
     }
 
 
     cancel() {
-        this.list();
+        this.list(this.setPagina());
     }
     send(elemento) {
         this.setState({ loading: true });
@@ -128,7 +134,7 @@ export class ActoresMnt extends Component {
                 break;
             case "edit":
                 fetch(`${this.url}/${this.idOriginal}`, {
-                    method: 'PUT',
+                    method: 'put',
                     body: JSON.stringify(elemento),
                     headers: {
                         'Content-Type': 'application/json'
@@ -244,11 +250,11 @@ function ActoresView({ elemento, onCancel }) {
     return (
         <div>
             <p>
-                <b>Código:</b> {elemento.id}
+                <b>Código:</b> {elemento.actorId}
                 <br />
-                <b>Nombre:</b> {elemento.nombre}
+                <b>Nombre:</b> {elemento.firstName}
                 <br />
-                <b>Apellidos:</b> {elemento.apellidos}
+                <b>Apellidos:</b> {elemento.lastName}
             </p>
             <p>
                 <button
