@@ -28,10 +28,9 @@ export class ActoresMnt extends Component {
         if (num || num === 0) pagina = num
         this.setState({ loading: true });
         fetch(`${this.url}/${pagina}`)
-        
             .then(response => {
                 response.json().then(response.ok ? data => {
-                    console.log(data);
+
                     this.setState({
                         modo: "list",
                         listado: data,
@@ -47,7 +46,7 @@ export class ActoresMnt extends Component {
     add() {
         this.setState({
             modo: "add",
-            elemento: { actorId: 0, firstName: "", lastName: "" }
+            elemento: { id: 0, nombre: "", apellidos: "" }
         });
     }
     edit(key) {
@@ -149,12 +148,29 @@ export class ActoresMnt extends Component {
     }
 
     render() {
-        
         if (this.state.loading) return <Esperando />;
         let result = [<ErrorMessage key="error" msg={this.state.error} onClear={() =>
             this.setState({ error: null })} />]
-        
         switch (this.state.modo) {
+            case "add":
+            case "edit":
+                result.push(
+                    <ActoresForm key="main"
+                        isAdd={this.state.modo === "add"}
+                        elemento={this.state.elemento}
+                        onCancel={e => this.cancel()}
+                        onSend={e => this.send(e)}
+                    />
+                )
+                break
+            case "view":
+                result.push(
+                    <ActoresView key="main"
+                        elemento={this.state.elemento}
+                        onCancel={e => this.cancel()}
+                    />
+                )
+                break
             default:
                 if (this.state.listado) result.push(
                     <ActoresList key="main"
@@ -177,9 +193,6 @@ export class ActoresMnt extends Component {
 
 }
 
-function Papa(){
-    return <h1>papa</h1>
-}
 
 function ActoresList(props) {
     return (
@@ -231,11 +244,11 @@ function ActoresView({ elemento, onCancel }) {
     return (
         <div>
             <p>
-                <b>Código:</b> {elemento.actorId}
+                <b>Código:</b> {elemento.id}
                 <br />
-                <b>Nombre:</b> {elemento.firstName}
+                <b>Nombre:</b> {elemento.nombre}
                 <br />
-                <b>Apellidos:</b> {elemento.lastName}
+                <b>Apellidos:</b> {elemento.apellidos}
             </p>
             <p>
                 <button
