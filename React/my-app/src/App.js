@@ -1,10 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-
+import './estilos.css';
 
 import React, { Component, useState } from 'react'
 import { Card, Contador } from './componentes';
-import { ErrorBoundary } from './comunes';
+import { ErrorBoundary } from './util/comunes';
+import Muro from './galeria/muro';
 
 export default class App extends Component {
   constructor(props) {
@@ -15,7 +16,9 @@ export default class App extends Component {
         displayValue: ''
     }
     this.menu = [
+      { texto: 'muro', url: '/muro', componente: <Muro /> },
       { texto: 'calculadora', url: '/', componente: <Calculator />},
+      { texto: 'calculadora2', url: '/2', componente: <Calculator2 />},
       { texto: 'inicio', url: '/inicio', componente: <Home />},
       { texto: 'demos', url: '/demos', componente: <DemosJSX /> },
       { texto: 'contador', url: '/contador', componente: <Contador init={69} />},
@@ -149,9 +152,6 @@ function Home() {
 }
 
 
-
-
-
 function Calculator() {
 
   
@@ -260,5 +260,215 @@ function Calculator() {
       </div>
     
     );
-    }
+}
+
+
+
+function Calculator2() {
+
+  
+  
+
+  const Display = (props) => {
+    return (
+      <div className="display">
+        {props.value || '0'}
+      </div>
+    )
+  }
+
+  return (
+    <>
+  <div className="container" style={{ marginTop: 100, marginLeft: 800 }}>
+    <div className="row">
+      <div className="col-xs-12" id="titulo">
+        <h3>Calculadora Básica</h3>
+      </div>
+    </div>
+  </div>
+  <div className="container " style={{ marginLeft: 800 }}>
+    <div className="row align-items-center">
+      <div className="col-xs-12 col-sm-6 col-md-3 fundo-mod margem borda">
+        <div className="justify-content-center centro">
+          <table className="table table-dark">
+            <tbody>
+              <tr>
+                <td colSpan={4}>
+                  <div id="historico" />
+                </td>
+              </tr>
+              <tr>
+                <td colSpan={4} id="locooo">
+                  <input
+                    type="text"
+                    name="visor"
+                    id="visor"
+                    className="col-xs-12 col-sm-12 col-md-12"
+                  />
+                  By: Daniel García
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="button"
+                    id="boton7"
+                    defaultValue={7}
+                    className="btn btn-secondary mesmo-tamanho"
+                    onclick="boton(7);"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="button"
+                    id="boton8"
+                    defaultValue={8}
+                    className="btn btn-secondary mesmo-tamanho"
+                    onclick="boton(8);"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="button"
+                    id="boton9"
+                    defaultValue={9}
+                    className="btn btn-secondary mesmo-tamanho"
+                    onclick="boton(9);"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="button"
+                    id="boton/"
+                    defaultValue="/"
+                    className="btn btn-info mesmo-tamanho"
+                    onclick="btn_divide();"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="button"
+                    id="boton4"
+                    defaultValue={4}
+                    className="btn btn-secondary mesmo-tamanho"
+                    onclick="boton(4);"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="button"
+                    id="boton5"
+                    defaultValue={5}
+                    className="btn btn-secondary mesmo-tamanho"
+                    onclick="boton(5);"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="button"
+                    id="boton6"
+                    defaultValue={6}
+                    className="btn btn-secondary mesmo-tamanho"
+                    onclick="boton(6);"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="button"
+                    id="boton*"
+                    defaultValue="*"
+                    className="btn btn-info mesmo-tamanho"
+                    onclick="btn_multiplica();"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="button"
+                    id="boton1"
+                    defaultValue={1}
+                    className="btn btn-secondary mesmo-tamanho"
+                    onclick="boton(1);"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="button"
+                    id="boton2"
+                    defaultValue={2}
+                    className="btn btn-secondary mesmo-tamanho"
+                    onclick="boton(2);"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="button"
+                    id="boton3"
+                    defaultValue={3}
+                    className="btn btn-secondary mesmo-tamanho"
+                    onclick="boton(3);"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="button"
+                    id="boton-"
+                    defaultValue="-"
+                    className="btn btn-info mesmo-tamanho"
+                    onclick="btn_resta();"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="button"
+                    id="boton0"
+                    defaultValue={0}
+                    className="btn btn-secondary mesmo-tamanho"
+                    onclick="boton(value);"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="button"
+                    id="boton="
+                    defaultValue="="
+                    className="btn btn-info mesmo-tamanho"
+                    onclick="btn_igual();"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="button"
+                    id="botonC"
+                    defaultValue="C"
+                    className="btn btn-danger mesmo-tamanho"
+                    onclick="reset();"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="button"
+                    id="boton+"
+                    defaultValue="+"
+                    className="btn btn-info mesmo-tamanho"
+                    onclick="btn_suma();"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</>
+
+    
+    );
+}
   
