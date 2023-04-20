@@ -1,4 +1,5 @@
 import React from 'react';
+import './comunes.css'
 import imgAjaxLoading from '../imagenes/loading.gif'
 
 export class ErrorBoundary extends React.Component {

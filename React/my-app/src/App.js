@@ -4,10 +4,10 @@ import './estilos.css';
 
 import React, { Component, useState } from 'react'
 import { Card, Contador } from './componentes';
-import { ErrorBoundary } from './util/comunes';
+import { ErrorBoundary } from './biblioteca/comunes.js';
 import Muro from './galeria/muro';
 
-export default class App extends Component {
+export class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -29,6 +29,7 @@ export default class App extends Component {
   render() {
     return (
       <>
+       {hula()}
         <Cabecera menu={this.menu} onSelectMenu={indice => this.setState({main: indice})} />
         <main className='container-fluid'>
           <ErrorBoundary>
@@ -38,6 +39,12 @@ export default class App extends Component {
         <Pie />
       </>
     )
+  }
+}
+
+function hula(){
+  if(false){
+    return <h1>hOOOOOOOOOLA</h1>
   }
 }
 
@@ -63,7 +70,7 @@ function Pie() {
   return null;
 }
 
-class Ejemplos extends Component {
+export class Ejemplos extends Component {
     constructor(props) {
       super(props)
       this.state = {
