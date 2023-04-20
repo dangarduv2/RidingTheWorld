@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import './estilos.css';
-
+import {ActoresMnt} from './componentes/actores.js'
 import React, { Component, useState } from 'react'
 import { Card, Contador } from './componentes';
 import { ErrorBoundary } from './biblioteca/comunes.js';
@@ -17,6 +17,7 @@ export class App extends Component {
         displayValue: ''
     }
     this.menu = [
+      { texto: 'actores', url: '/actores', componente: <ActoresMnt /> },
       { texto: 'fromulario', url: '/fromulario', componente: <PadreFormulario /> },
       { texto: 'muro', url: '/muro', componente: <Muro /> },
       { texto: 'calculadora', url: '/', componente: <Calculator />},
@@ -32,7 +33,7 @@ export class App extends Component {
     return (
       <>
         <Cabecera menu={this.menu} onSelectMenu={indice => this.setState({main: indice})} />
-        <main className='container-fluid mt-5 ms-5'>
+        <main className='container-fluid'>
           <ErrorBoundary>
           {this.menu[this.state.main].componente}
           </ErrorBoundary>

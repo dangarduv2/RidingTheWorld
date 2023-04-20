@@ -43,7 +43,7 @@ export class Formulario extends Component {
 
     render() {
         return (
-            <form>
+            <form className='mt-5 ms-5'>
                 <p>
                     <label htmlFor='id'>Código:</label>
                     <input type='number' id='id' name='id' value={this.state.elemento.id} onChange={this.handleChange} required min={0} />
