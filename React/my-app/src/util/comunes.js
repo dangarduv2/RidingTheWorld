@@ -48,3 +48,26 @@ export function ErrorMessage({msg}) {
     </div>
 )
 }
+
+export function PaginacionCmd({ actual, total, onChange }) {
+    let click = (number, ev) => {
+        ev.preventDefault()
+        if (onChange) onChange(number)
+    }
+    let items = [];
+    for (let number = 0; number < total; number++) {
+        items.push(
+            number === actual ?
+                <li key={number} className="page-item active" aria-current="page"><a href='.' className="page-link" onClick={click.bind(this, number)} >{number + 1}</a></li>
+                :
+                <li key={number} className="page-item"><a href='.' className="page-link" onClick={click.bind(this, number)} >{number + 1}</a></li>
+        );
+    }
+    return (
+        <nav aria-label="Page navigation">
+            <ul className="pagination">
+                {items}
+            </ul>
+        </nav>
+    )
+}
