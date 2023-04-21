@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import './estilos.css';
 import {ActoresMnt} from './componentes/actores.js'
+import {LanuagesMnt} from './componentes/languages.js'
+import {CategoriasMnt} from './componentes/categorias.js'
 import React, { Component, useState } from 'react'
 import { Card, Contador } from './componentes';
 import { ErrorBoundary } from './biblioteca/comunes.js';
@@ -18,6 +20,8 @@ export class App extends Component {
     }
     this.menu = [
       { texto: 'actores', url: '/actores', componente: <ActoresMnt /> },
+      { texto: 'lenguages', url: '/lenguages', componente: <LanuagesMnt /> },
+      { texto: 'categorias', url: '/categorias', componente: <CategoriasMnt /> },
       { texto: 'fromulario', url: '/fromulario', componente: <PadreFormulario /> },
       { texto: 'muro', url: '/muro', componente: <Muro /> },
       { texto: 'calculadora', url: '/', componente: <Calculator />},

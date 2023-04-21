@@ -4,7 +4,7 @@ import { titleCase } from '../biblioteca/formateadores.js';
 
 
 
-export class ActoresMnt extends Component {
+export class LanuagesMnt extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -16,9 +16,10 @@ export class ActoresMnt extends Component {
             pagina: 0,
             paginas: 0
         };
+        
         this.pagina = this.setPagina();
         this.idOriginal = null;
-        this.url = (process.env.REACT_APP_API_URL || 'http://localhost:8081/') + 'catalogo/actor';
+        this.url = (process.env.REACT_APP_API_URL || 'http://localhost:8081/') + 'catalogo/language';
     }
 
     setPagina() {
@@ -52,13 +53,13 @@ export class ActoresMnt extends Component {
     add() {
         this.setState({
             modo: "add",
-            elemento: { actorId: 0, firstName: "", lastName: "" }
+            elemento: { languageId: 0, name: "" }
         });
     }
     edit(key) {
         this.setState({ loading: true });
-        fetch(`${this.url}/${key}`, { method: 'PUT' })
-            .then(response => {  
+        fetch(`${this.url}/${key}`)
+            .then(response => {
                 response.json().then(response.ok ? data => {
                     this.setState({
                         modo: "edit",
@@ -89,7 +90,7 @@ export class ActoresMnt extends Component {
         if (!window.confirm("¿Seguro?")) return;
         this.setState({ loading: true });
         console.log("Lllegamos a delete")
-        fetch(`${this.url}/${key}`)
+        fetch(`${this.url}/${key}`, { method: 'DELETE' })
             .then(response => {
                 console.log(response)
                 console.log(`${this.url}/${key}`)
@@ -209,7 +210,7 @@ function ActoresList(props) {
             <table className="table table-hover table-striped">
                 <thead className="table-info">
                     <tr>
-                        <th>Lista de Actores y Actrices</th>
+                        <th>Lista de Lenguas</th>
                         <th className="text-end">
                             <input
                                 type="button" className="btn btn-primary"
@@ -222,20 +223,20 @@ function ActoresList(props) {
                     {props.listado.map(item => (
                         <tr key={item.actorId}>
                             <td>
-                                {titleCase(item.firstName)}
+                                {titleCase(item.name)}
                             </td>
                             <td className="text-end">
                                 <div className="btn-group text-end" role="group">
                                     <input type="button" className="btn btn-primary"
-                                        value="Ver" onClick={e => props.onView(item.actorId)}
+                                        value="Ver" onClick={e => props.onView(item.languageId)}
                                     />
                                     <input type="button" className="btn btn-primary"
                                         value="Editar"
-                                        onClick={e => props.onEdit(item.actorId)}
+                                        onClick={e => props.onEdit(item.languageId)}
                                     />
                                     <input type="button" className="btn btn-danger"
                                         value="Borrar"
-                                        onClick={e => props.onDelete(item.actorId)}
+                                        onClick={e => props.onDelete(item.languageId)}
                                     />
                                 </div>
                             </td>
@@ -253,11 +254,9 @@ function ActoresView({ elemento, onCancel }) {
     return (
         <div>
             <p>
-                <b>Código:</b> {elemento.actorId}
+                <b>Código:</b> {elemento.languageId}
                 <br />
-                <b>Nombre:</b> {elemento.firstName}
-                <br />
-                <b>Apellidos:</b> {elemento.lastName}
+                <b>Nombre:</b> {elemento.name}
             </p>
             <p>
                 <button
@@ -294,31 +293,7 @@ class ActoresForm extends Component {
         });
         this.validar();
     }
-    validarCntr(cntr) {
-        if (cntr.name) {
-            // eslint-disable-next-line default-case
-            switch (cntr.name) {
-                case "apellidos":
-                    cntr.setCustomValidity(cntr.value !== cntr.value.toUpperCase()
-                        ? "Debe estar en mayúsculas" : '');
-                    break;
-            }
-        }
-    }
-    validar() {
-        if (this.form) {
-            const errors = {};
-            let invalid = false;
-            for (var cntr of this.form.elements) {
-                if (cntr.name) {
-                    this.validarCntr(cntr);
-                    errors[cntr.name] = cntr.validationMessage;
-                    invalid = invalid || !cntr.validity.valid;
-                }
-            }
-            this.setState({ msgErr: errors, invalid: invalid });
-        }
-    }
+
     componentDidMount() {
         this.validar();
     }
@@ -334,7 +309,7 @@ class ActoresForm extends Component {
                     <input type="number"
                         className={'form-control' + (this.props.isAdd ? '' : '-plaintext')}
                         id="id" name="id"
-                        value={this.state.elemento.id}
+                        value={this.state.elemento.languageId}
                         onChange={this.handleChange}
                         required readOnly={!this.props.isAdd}
                     />
@@ -343,22 +318,12 @@ class ActoresForm extends Component {
                 <div className="form-group">
                     <label htmlFor="nombre">Nombre</label>
                     <input type="text" className="form-control"
-                        id="firstName" name="firstName"
-                        value={this.state.elemento.firstName}
+                        id="nombre" name="nombre"
+                        value={this.state.elemento.nombre}
                         onChange={this.handleChange}
                         required minLength="2" maxLength="45"
                     />
-                    <ValidationMessage msg={this.state.msgErr.firstName} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="lastName">Apellidos</label>
-                    <input type="text" className="form-control"
-                        id="lastName" name="lastName"
-                        value={this.state.elemento.lastName}
-                        onChange={this.handleChange}
-                        minLength="2" maxLength="10"
-                    />
-                    <ValidationMessage msg={this.state.msgErr.lastName} />
+                    <ValidationMessage msg={this.state.msgErr.nombre} />
                 </div>
                 <div className="form-group">
                     <button className="btn btn-primary" type="button"
