@@ -230,14 +230,7 @@ function ActoresList(props) {
                                     <input type="button" className="btn btn-primary"
                                         value="Ver" onClick={e => props.onView(item.languageId)}
                                     />
-                                    <input type="button" className="btn btn-primary"
-                                        value="Editar"
-                                        onClick={e => props.onEdit(item.languageId)}
-                                    />
-                                    <input type="button" className="btn btn-danger"
-                                        value="Borrar"
-                                        onClick={e => props.onDelete(item.languageId)}
-                                    />
+                                    
                                 </div>
                             </td>
                         </tr>

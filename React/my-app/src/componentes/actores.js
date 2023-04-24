@@ -4,6 +4,7 @@ import { titleCase } from '../biblioteca/formateadores.js';
 
 
 
+
 export class ActoresMnt extends Component {
     constructor(props) {
         super(props);
@@ -162,6 +163,7 @@ export class ActoresMnt extends Component {
             this.setState({ error: null })} />]
         switch (this.state.modo) {
             case "add":
+                result.push(<ActorForm/>); break
             case "edit":
                 result.push(
                     <ActoresForm key="main"
@@ -229,14 +231,7 @@ function ActoresList(props) {
                                     <input type="button" className="btn btn-primary"
                                         value="Ver" onClick={e => props.onView(item.actorId)}
                                     />
-                                    <input type="button" className="btn btn-primary"
-                                        value="Editar"
-                                        onClick={e => props.onEdit(item.actorId)}
-                                    />
-                                    <input type="button" className="btn btn-danger"
-                                        value="Borrar"
-                                        onClick={e => props.onDelete(item.actorId)}
-                                    />
+                            
                                 </div>
                             </td>
                         </tr>
@@ -374,5 +369,101 @@ class ActoresForm extends Component {
                 </div>
             </form>
         );
+    
+    
+    
     }
+
+
+    
+
+
+    
 }
+
+
+class ActorForm extends Component {
+    constructor(props) {
+      super(props);
+  
+      this.state = {
+        actorId: '',
+        firstName: '',
+        lastName: ''
+      };
+  
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleInputChange = this.handleInputChange.bind(this);
+    }
+  
+    handleSubmit(event) {
+      event.preventDefault();
+  
+      const { actorId, firstName, lastName } = this.state;
+  
+      fetch('http://localhost:8081/catalogo/actor/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          actorId: actorId,
+          firstName: firstName,
+          lastName: lastName
+        })
+      })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
+    }
+  
+    handleInputChange(event) {
+      const target = event.target;
+      const value = target.value;
+      const name = target.name;
+  
+      this.setState({
+        [name]: value
+      });
+    }
+  
+    render() {
+      const { actorId, firstName, lastName } = this.state;
+  
+      return (
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Actor ID:
+            <input
+              type="number"
+              name="actorId"
+              value={actorId}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            First Name:
+            <input
+              type="text"
+              name="firstName"
+              value={firstName}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <br />
+          <label>
+            Last Name:
+            <input
+              type="text"
+              name="lastName"
+              value={lastName}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+      );
+    }
+  }
