@@ -4,6 +4,7 @@ import './estilos.css';
 import {ActoresMnt} from './componentes/actores.js'
 import {LanuagesMnt} from './componentes/languages.js'
 import {CategoriasMnt} from './componentes/categorias.js'
+import {PeliculasMnt} from './componentes/peliculas'
 import React, { Component, useState } from 'react'
 import { Card, Contador } from './componentes';
 import { ErrorBoundary } from './biblioteca/comunes.js';
@@ -19,6 +20,7 @@ export class App extends Component {
         displayValue: ''
     }
     this.menu = [
+      { texto: 'peliculas', url: '/peliculas', componente: <PeliculasMnt /> },
       { texto: 'actores', url: '/actores', componente: <ActoresMnt /> },
       { texto: 'lenguages', url: '/lenguages', componente: <LanuagesMnt /> },
       { texto: 'categorias', url: '/categorias', componente: <CategoriasMnt /> },
