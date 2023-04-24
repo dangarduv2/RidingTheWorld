@@ -90,10 +90,8 @@ export class PeliculasMnt extends Component {
         if (!window.confirm("¿Seguro?")) return;
         this.setState({ loading: true });
         console.log("Lllegamos a delete")
-        fetch(`${this.url}/${key}`)
+        fetch(`${this.url}/${key}`,{ method: 'DELETE' })
             .then(response => {
-                console.log(response)
-                console.log(`${this.url}/${key}`)
                 if (response.ok)
                     this.list(this.setPagina())
                 else
@@ -222,7 +220,7 @@ function ActoresList(props) {
                 </thead>
                 <tbody className="table-group-divider">
                     {props.listado.map(item => (
-                        <tr key={item.actorId}>
+                        <tr key={item.filmId}>
                             <td>
                                 {titleCase(item.title)}
                             </td>
@@ -231,6 +229,11 @@ function ActoresList(props) {
                                     <input type="button" className="btn btn-primary"
                                         value="Ver" onClick={e => props.onView(item.filmId)}
                                     />
+                                    <input type="button" className="btn btn-danger"
+                                        value="Borrar"
+                                        onClick={e => props.onDelete(item.filmId)}
+                                    />
+                                    
                             
                                 </div>
                             </td>

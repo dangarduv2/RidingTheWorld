@@ -20,9 +20,10 @@ export class App extends Component {
         displayValue: ''
     }
     this.menu = [
-      { texto: 'peliculas', url: '/peliculas', componente: <PeliculasMnt /> },
+      
       { texto: 'actores', url: '/actores', componente: <ActoresMnt /> },
       { texto: 'lenguages', url: '/lenguages', componente: <LanuagesMnt /> },
+      { texto: 'peliculas', url: '/peliculas', componente: <PeliculasMnt /> },
       { texto: 'categorias', url: '/categorias', componente: <CategoriasMnt /> },
       { texto: 'fromulario', url: '/fromulario', componente: <PadreFormulario /> },
       { texto: 'muro', url: '/muro', componente: <Muro /> },

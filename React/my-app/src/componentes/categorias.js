@@ -90,10 +90,8 @@ export class CategoriasMnt extends Component {
         if (!window.confirm("¿Seguro?")) return;
         this.setState({ loading: true });
         console.log("Lllegamos a delete")
-        fetch(`${this.url}/${key}`, { method: 'DELETE' })
+        fetch(`${this.url}/${key}`,{ method: 'DELETE' })
             .then(response => {
-                console.log(response)
-                console.log(`${this.url}/${key}`)
                 if (response.ok)
                     this.list(this.setPagina())
                 else
@@ -229,6 +227,10 @@ function ActoresList(props) {
                                 <div className="btn-group text-end" role="group">
                                     <input type="button" className="btn btn-primary"
                                         value="Ver" onClick={e => props.onView(item.categoryId)}
+                                    />
+                                    <input type="button" className="btn btn-danger"
+                                        value="Borrar"
+                                        onClick={e => props.onDelete(item.categoryId)}
                                     />
                                     
                                 </div>
