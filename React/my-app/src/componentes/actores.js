@@ -72,6 +72,7 @@ export class ActoresMnt extends Component {
             .catch(error => this.setError(error))
     }
 
+
     view(key) {
         this.setState({ loading: true });
         fetch(`${this.url}/${key}`)
@@ -389,9 +390,9 @@ class ActorForm extends Component {
       super(props);
   
       this.state = {
-        actorId: '',
-        firstName: '',
-        lastName: ''
+        actorId: 0,
+        firstName: 'xx',
+        lastName: 'xx'
       };
   
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -402,11 +403,10 @@ class ActorForm extends Component {
       event.preventDefault();
   
       const { actorId, firstName, lastName } = this.state;
-  
       fetch('http://localhost:8081/catalogo/actor/', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           actorId: actorId,
@@ -418,7 +418,7 @@ class ActorForm extends Component {
       .then(data => console.log(data))
       .catch(error => console.error(error));
     }
-  
+
     handleInputChange(event) {
       const target = event.target;
       const value = target.value;
